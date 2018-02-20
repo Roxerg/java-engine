@@ -22,7 +22,7 @@ public class Sprite {
 	public static Sprite stone1 =  new Sprite(16, 4, 0, SpriteSheet.first);
 	
 	
-	public static Sprite nothing = new Sprite(16, 0xFF69B4);
+	public static Sprite nothing = new Sprite(16, 0x1976D2);
 	
 	/* ------------------- */
 	

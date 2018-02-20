@@ -8,7 +8,11 @@ public class Tile {
 	public int x, y;
 	public Sprite sprite;
 	
+	
 	public static Tile grass = new GrassTile(Sprite.grass1);
+	public static Tile sand  = new GrassTile(Sprite.sand1);
+	public static Tile stone = new GrassTile(Sprite.stone1);
+	
 	public static Tile nothing = new NothingTile(Sprite.nothing);
 	
 	public Tile(Sprite sprite) {
