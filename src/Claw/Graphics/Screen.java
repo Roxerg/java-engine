@@ -37,6 +37,7 @@ public class Screen {
 		}
 	}
 	
+	/*
 	public void render(int xoff, int yoff) {	
 		for (int y = 0; y < height; y++) {
 			int yp = y + yoff;
@@ -50,6 +51,7 @@ public class Screen {
 			}
 		}
 	}
+	*/
 	
 	
 	

@@ -22,10 +22,10 @@ public class InputHandler implements KeyListener {
     	left  = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
     	right  = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
     	
-    	if (up) { yoff++; }
-    	if (down) { yoff--; }
-    	if (left) { xoff++; }
-    	if (right) { xoff--; }
+    	if (up) { yoff--;  System.out.println("moved");}
+    	if (down) { yoff++; System.out.println("moved");}
+    	if (left) { xoff--; System.out.println("moved");}
+    	if (right) { xoff++; System.out.println("moved");}
     	
     }
 

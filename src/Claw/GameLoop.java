@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 
 
 import Claw.Graphics.Screen;
+import Claw.Level.Level;
+import Claw.Level.RandomLevel;
 import Claw.InputHandler;
 
 public class GameLoop extends Canvas implements Runnable {
@@ -40,9 +42,12 @@ public class GameLoop extends Canvas implements Runnable {
 	private Thread thread;
 	private Screen render;
 	
+	private Level level;
+	
+	
 	public GameLoop() {
-		input = new InputHandler();
-		addKeyListener(input);
+		
+		
 		
 		Dimension frameSize = new Dimension(windowWidth * scale, windowHeight * scale); 
 		setPreferredSize(frameSize);
@@ -50,6 +55,11 @@ public class GameLoop extends Canvas implements Runnable {
 		render = new Screen(windowWidth, windowHeight);
 		
 		frame = new JFrame();
+		
+		input = new InputHandler();
+		addKeyListener(input);
+		
+		level = new RandomLevel(64, 64);
 	}
 	
 	
@@ -121,7 +131,8 @@ public class GameLoop extends Canvas implements Runnable {
 		}
 		
 		render.clear();
-		render.render(xoff, yoff);
+		level.render(xoff, yoff, render);
+		
 		
 		for (int i = 0; i < px.length; i++) {
 			px[i] = render.px[i];
