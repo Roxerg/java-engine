@@ -35,13 +35,11 @@ public class Screen {
 	
 	public void render(int xoff, int yoff) {	
 		for (int y = 0; y < height; y++) {
-			int yy = y + yoff;
-			//if (yy >= height || yy < 0) break;
 			for (int x = 0; x < width; x++) {
-				int xx = x +xoff;
-				//if (xx >= width || xx < 0) break;
-				int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK)* MAP_SIZE_MASK;
-				px[x+y*width] = tiles[tileIndex];
+				int xx = x + xoff;
+				//int tileIndex = ((xx >> 4) & MAP_SIZE_MASK) + ((yy >> 4) & MAP_SIZE_MASK)* MAP_SIZE;
+				//px[x+y*width] = tiles[tileIndex];
+				px[x+y*width] =  Sprite.kitty.pixels[(x&15)+(y&15)*Sprite.kitty.SIZE];
 			}
 		}
 	}

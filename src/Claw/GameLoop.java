@@ -33,13 +33,17 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	private BufferedImage view = new BufferedImage(windowWidth, windowHeight, BufferedImage.TYPE_INT_RGB);
 	private int[] px = ((DataBufferInt)view.getRaster().getDataBuffer()).getData();
-	private InputHandler InputHandler = new InputHandler(this);
 	
+	
+	private InputHandler input;
 	private JFrame frame; 
 	private Thread thread;
 	private Screen render;
 	
 	public GameLoop() {
+		input = new InputHandler();
+		addKeyListener(input);
+		
 		Dimension frameSize = new Dimension(windowWidth * scale, windowHeight * scale); 
 		setPreferredSize(frameSize);
 		
@@ -99,29 +103,10 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	public void tick() {
 		
-		//W
-		if (InputHandler.isKeyDown(87)) {
-			yoff--;
-		}
+		input.update();
 		
-		//A
-		if (InputHandler.isKeyDown(65)) {
-			xoff--;
-		}
-		
-		//S
-		if (InputHandler.isKeyDown(83)) {
-			yoff++;
-		}
-		
-		//D
-		if (InputHandler.isKeyDown(68)) {
-			xoff++;
-		}
-		
-		
-		//xoff++;
-		//yoff++;
+		xoff = input.xoff;
+		yoff = input.yoff;
 		
 	}
 	
