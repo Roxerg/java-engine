@@ -10,11 +10,19 @@ public class Sprite {
 	/* sprite declarations */
 	
 	public static Sprite boogie =  new Sprite(16, 0, 0, SpriteSheet.first);
+	public static Sprite skelly =  new Sprite(16, 0, 1, SpriteSheet.first);
+	public static Sprite skully =  new Sprite(16, 0, 2, SpriteSheet.first);
+	
+	
 	public static Sprite kitty  =  new Sprite(16, 1, 0, SpriteSheet.first);
+	public static Sprite uzi    =  new Sprite(16, 1, 1, SpriteSheet.first);
+	
 	public static Sprite grass1 =  new Sprite(16, 2, 0, SpriteSheet.first);
+	public static Sprite sand1  =  new Sprite(16, 3, 0, SpriteSheet.first);
+	public static Sprite stone1 =  new Sprite(16, 4, 0, SpriteSheet.first);
 	
 	
-	
+	public static Sprite nothing = new Sprite(16, 0xFF69B4);
 	
 	/* ------------------- */
 	
@@ -29,6 +37,20 @@ public class Sprite {
 		
 		
 	}
+	
+	public Sprite(int size, int colour) {
+		SIZE = size;
+		pixels = new int[SIZE*SIZE];
+		setColour(colour);
+	}
+	
+	
+	private void setColour(int colour) {
+		for (int i=0; i< SIZE*SIZE; i++) {
+			pixels[i] = colour;
+		}
+	}
+	
 	
 	private void load() {
 		for (int y = 0; y < SIZE; y++) {
