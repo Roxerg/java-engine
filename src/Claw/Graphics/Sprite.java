@@ -9,12 +9,16 @@ public class Sprite {
 	
 	/* sprite declarations */
 	
+	public static Sprite player0 = new Sprite(16, 1, 0, SpriteSheet.first);
+	public static Sprite player1 = new Sprite(16, 1, 1, SpriteSheet.first);
+	public static Sprite player2 = new Sprite(16, 1, 2, SpriteSheet.first);
+	public static Sprite player3 = new Sprite(16, 1, 3, SpriteSheet.first);
+	
 	public static Sprite boogie =  new Sprite(16, 0, 0, SpriteSheet.first);
 	public static Sprite skelly =  new Sprite(16, 0, 1, SpriteSheet.first);
 	public static Sprite skully =  new Sprite(16, 0, 2, SpriteSheet.first);
 	
-	
-	public static Sprite kitty  =  new Sprite(16, 1, 0, SpriteSheet.first);
+	//public static Sprite kitty  =  new Sprite(16, 1, 0, SpriteSheet.first);
 	public static Sprite uzi    =  new Sprite(16, 1, 1, SpriteSheet.first);
 	
 	public static Sprite grass1 =  new Sprite(16, 2, 0, SpriteSheet.first);

@@ -22,10 +22,10 @@ public class InputHandler implements KeyListener {
     	left  = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
     	right  = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
     	
-    	if (up) { yoff--; }
-    	if (down) { yoff++; }
-    	if (left) { xoff--; }
-    	if (right) { xoff++; }
+    	//if (up) { yoff--; }
+    	//if (down) { yoff++; }
+    	//if (left) { xoff--; }
+    	//if (right) { xoff++; }
     	
     }
 

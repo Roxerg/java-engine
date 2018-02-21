@@ -2,6 +2,7 @@ package Claw.Graphics;
 
 import java.util.Random;
 
+import Claw.Entity.Mob.Player;
 import Claw.Level.Tile.Tile;
 
 public class Screen {
@@ -76,11 +77,29 @@ public class Screen {
 	
 	}
 	
+	public void renderPlayer(int xp, int yp, Sprite sprite) {
+		
+		xp -= xOffset;
+		yp -= yOffset;
+		
+		for (int y = 0; y < sprite.SIZE; y++) {
+			int ya = y + yp;
+			for (int x = 0; x < sprite.SIZE; x++) {
+				int xa = x + xp;
+				if (xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				px[xa+ya*width] = sprite.pixels[x + y * sprite.SIZE];
+			}
+		}
+		
+	}
+	
+	
+	
 	public void setOffset(int xOffset, int yOffset) {
 		
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
-		
 		
 	}
 
