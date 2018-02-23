@@ -9,10 +9,10 @@ public class Sprite {
 	
 	/* sprite declarations */
 	
-	public static Sprite player0 = new Sprite(16, 1, 0, SpriteSheet.first);
-	public static Sprite player1 = new Sprite(16, 1, 1, SpriteSheet.first);
-	public static Sprite player2 = new Sprite(16, 1, 2, SpriteSheet.first);
-	public static Sprite player3 = new Sprite(16, 1, 3, SpriteSheet.first);
+	public static Sprite player_front = new Sprite(16, 1, 0, SpriteSheet.first);
+	public static Sprite player_front_walk = new Sprite(16, 1, 1, SpriteSheet.first);
+	public static Sprite player_back = new Sprite(16, 1, 2, SpriteSheet.first);
+	public static Sprite player_back_walk = new Sprite(16, 1, 3, SpriteSheet.first);
 	
 	public static Sprite boogie =  new Sprite(16, 0, 0, SpriteSheet.first);
 	public static Sprite skelly =  new Sprite(16, 0, 1, SpriteSheet.first);
@@ -22,6 +22,13 @@ public class Sprite {
 	public static Sprite uzi    =  new Sprite(16, 1, 1, SpriteSheet.first);
 	
 	public static Sprite grass1 =  new Sprite(16, 2, 0, SpriteSheet.first);
+	public static Sprite grass2 =  new Sprite(16, 2, 1, SpriteSheet.first);
+	public static Sprite grass3 =  new Sprite(16, 2, 2, SpriteSheet.first);
+	public static Sprite grass4 =  new Sprite(16, 2, 3, SpriteSheet.first);
+	public static Sprite grass5 =  new Sprite(16, 2, 4, SpriteSheet.first);
+	public static Sprite grass6 =  new Sprite(16, 2, 5, SpriteSheet.first);
+	public static Sprite grass7 =  new Sprite(16, 2, 6, SpriteSheet.first);
+	
 	public static Sprite sand1  =  new Sprite(16, 3, 0, SpriteSheet.first);
 	public static Sprite stone1 =  new Sprite(16, 4, 0, SpriteSheet.first);
 	

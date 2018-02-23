@@ -1,5 +1,6 @@
 package Claw.Level;
 
+import Claw.MouseInputHandler;
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
 import Claw.Level.Tile.Tile;
@@ -20,11 +21,18 @@ public class Level {
 		loadLevel(path);
 	}
 	
-	protected void generateLevel() {
-		//lmao
+	public Level(MouseInputHandler m, int width, int height) {
+		this.width = width;
+		this.height = height;
+		tiles = new int[width * height];
+		generateLevel();
 	}
 	
-	private void loadLevel(String path) {
+	protected void generateLevel() {
+		
+	}
+	
+	protected void loadLevel(String path) {
 		//ayy
 	}
 	
@@ -58,8 +66,14 @@ public class Level {
 	}
 	
 	public Tile getTile(int x, int y) {
-		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
-		if (tiles[x+y*width] == 0) return Tile.sand;
+		//if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
+		if (tiles[x+y*width] == 1) return Tile.grass1;
+		if (tiles[x+y*width] == 2) return Tile.grass2;
+		//if (tiles[x+y*width] > 4 && tiles[x+y*width] < 9) return Tile.grass3;
+		if (tiles[x+y*width] == 3) return Tile.grass4;
+		if (tiles[x+y*width] == 4) return Tile.grass5;
+		if (tiles[x+y*width] == 5) return Tile.grass6;
+		if (tiles[x+y*width] == 6) return Tile.grass7;
 		return Tile.nothing;
 	}
 	

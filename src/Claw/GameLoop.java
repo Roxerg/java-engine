@@ -15,8 +15,10 @@ import javax.swing.JFrame;
 
 import Claw.Graphics.Screen;
 import Claw.Level.Level;
+import Claw.Level.LevelEditor;
 import Claw.Level.RandomLevel;
 import Claw.InputHandler;
+import Claw.MouseInputHandler;
 import Claw.Entity.Mob.Player;
 
 public class GameLoop extends Canvas implements Runnable {
@@ -39,6 +41,7 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	
 	private InputHandler input;
+	private MouseInputHandler mouseinput;
 	private JFrame frame; 
 	private Thread thread;
 	private Screen render;
@@ -59,12 +62,20 @@ public class GameLoop extends Canvas implements Runnable {
 		frame = new JFrame();
 		
 		input = new InputHandler();
+		mouseinput = new MouseInputHandler();
+	
 		
+		//level = new RandomLevel(64, 64);
 		
-		level = new RandomLevel(64, 64);
 		
 		player = new Player(input);
 		addKeyListener(input);
+		addMouseListener(mouseinput);
+		
+		level = new LevelEditor(mouseinput, 64, 64);
+		
+		System.out.println(mouseinput.clicked);
+		
 	}
 	
 	
@@ -136,7 +147,12 @@ public class GameLoop extends Canvas implements Runnable {
 		}
 		
 		render.clear();
-		level.render(player.x, player.y, render);
+		
+		int xScroll = player.x - render.width/2 ;
+		int yScroll = player.y - render.height/2 ;
+		
+		level.render(xScroll, yScroll, render);
+		player.render(render);
 		
 		
 		for (int i = 0; i < px.length; i++) {

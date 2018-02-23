@@ -1,10 +1,15 @@
 package Claw.Entity.Mob;
 
 import Claw.InputHandler;
+import Claw.Graphics.Screen;
+import Claw.Graphics.Sprite;
 
 public class Player extends Mob {
 
 	private InputHandler input;
+	private Sprite sprite;
+	private int anim = 0;
+	private boolean walking = false;
 	
 	public Player(InputHandler input) {
 		this.input = input;
@@ -14,6 +19,7 @@ public class Player extends Mob {
 		this.x = x;
 		this.y = y;
 		this.input = input;
+		sprite = Sprite.player_front;
 	}
 	
 	public void update() {
@@ -23,11 +29,44 @@ public class Player extends Mob {
 		if (input.left) xa--;
 		if (input.right) xa++;
 		
-		if (xa != 0 || ya != 0) move(xa, ya);
+		if (anim < 5000) anim++; else anim = 0; 
+		
+		if (xa != 0 || ya != 0) {
+			move(xa, ya);
+			walking = true;
+		}
+		else {
+			walking = false;
+		}
 		
 	}
 	
-	public void render() {
+	public void render(Screen screen) {
+		
+		int xcent = x - 8;
+		int ycent = y - 8;
+		
+		if (dir == 2) {
+			sprite = Sprite.player_front;
+			if (walking) {
+				if (anim % 20 > 10) {
+					sprite = Sprite.player_front_walk;
+				}
+			}
+			
+		}
+		if (dir == 0) {
+			sprite = Sprite.player_back;
+			if (walking) {
+				if (anim % 20 > 10) {
+					sprite = Sprite.player_back_walk;
+				}
+			}
+		}
+		
+		screen.renderPlayer(xcent, ycent, sprite);
+		
+
 		
 	}
 	

@@ -12,6 +12,10 @@ public class InputHandler implements KeyListener {
 	public boolean up, down, left, right;
     boolean[] keys = new boolean[KEY_ARRAY_SIZE];
     
+    public int x, y;
+    
+    public boolean clicked = false;;
+    
     /*public InputHandler(Component c) {
         c.addKeyListener(this);
     }*/
@@ -22,12 +26,16 @@ public class InputHandler implements KeyListener {
     	left  = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
     	right  = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
     	
+
+    	
     	//if (up) { yoff--; }
     	//if (down) { yoff++; }
     	//if (left) { xoff--; }
     	//if (right) { xoff++; }
     	
     }
+    
+    
 
     public boolean isKeyDown(int keyCode) {
 

@@ -8,7 +8,7 @@ import Claw.Level.Tile.Tile;
 public class Screen {
 	
 	
-	public final int MAP_SIZE = 8;
+	public final int MAP_SIZE = 16;
 	public final int MAP_SIZE_MASK = MAP_SIZE - 1;
 	
 	public int xOffset, yOffset;
@@ -88,7 +88,11 @@ public class Screen {
 				int xa = x + xp;
 				if (xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				px[xa+ya*width] = sprite.pixels[x + y * sprite.SIZE];
+				int colour = sprite.pixels[x + y * sprite.SIZE];
+				if (colour != 0xffFF00FF) px[xa+ya*width] = colour ;
+				
+				// for sprite flip, iterate through pixels in reverse order.
+				
 			}
 		}
 		
