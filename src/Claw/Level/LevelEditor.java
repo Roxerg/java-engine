@@ -10,6 +10,7 @@ public class LevelEditor extends Level {
 	public Tile[] tilemenu;
 	public int xOff = 0, yOff = 0;
 	public MouseInputHandler input;
+	public int SelectedTile = 1;
 	
 	
 	
@@ -47,28 +48,71 @@ public class LevelEditor extends Level {
 		this.xOff = xOff;
 		this.yOff = yOff;
 		
-		placeBlock();
+		//placeBlock();
 	}
 	
 	
 	public void placeBlock() {
 		
 		if (input.clicked) {
-			if (input.x + xOff > 0 || input.y + yOff > 0) {
+			
 				
-				
-				int a = ((xOff + input.x/3 + Sprite.nothing.SIZE )>> 4) - 1;
+				int a = ((xOff + input.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
 				int b = ((yOff + input.y/3 + Sprite.nothing.SIZE ) >> 4) - 1;  
-				int g = a + b;
+				
+				int ahud = ((input.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
+				int bhud = ((input.y/3 + Sprite.nothing.SIZE ) >> 4) - 1; 
+				
+				int xhudstart = ((300/2) - 16*2 ) >> 4;
+				int xhudend   = ((300/2) + 16*2 ) >> 4;
+				int yhud      = ((height-16)*3) >> 4;
+				
+				if (input.x>0) {
+					System.out.println("width " + width);
+					System.out.println("AHUD: " +xhudend+">"+ ahud + ">" + xhudstart +" BHUD: " + bhud + "==" + yhud);
+					input.clicked = false;
+				}
 				
 				
-				tiles[a + b*width] = 1;
+				if (ahud >= xhudstart && ahud < xhudend && bhud == yhud) {
+					System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
+					System.out.println("accessed hud!");
+					
+					if (ahud == xhudstart) {
+						SelectedTile = 1;
+						System.out.println("1 selected!");
+					}
+					if (ahud == xhudstart + 1) {
+						SelectedTile = 2;
+						System.out.println("2 selected!");
+					}
+					if (ahud == xhudstart + 2) {
+						SelectedTile = 3;
+						System.out.println("3 selected!");
+					}
+					if (ahud == xhudstart + 3) {
+						SelectedTile = 4;
+						System.out.println("4 selected!");
+					}
+					if (ahud == xhudstart + 4) {
+						SelectedTile = 5;
+						System.out.println("5 selected!");
+					}
+					
+					
+					input.clicked = false;
+					
+				}
+				else if (a >= 0 && b >= 0 && a < tiles.length && b < tiles.length) {
+				
+				System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
+				tiles[a + b*width] = SelectedTile;
 				System.out.println("a: " + a + " b: " + b);
 				System.out.println("xOff: " + xOff + " yOff: " + yOff);
 				System.out.println("placed at " + a);
 				input.clicked = false;
 				
-			}
+				}
 			
 		}
 	}

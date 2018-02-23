@@ -62,6 +62,8 @@ public class GameLoop extends Canvas implements Runnable {
 		frame = new JFrame();
 		
 		input = new InputHandler();
+		
+		// for map editor
 		mouseinput = new MouseInputHandler();
 	
 		
@@ -72,6 +74,7 @@ public class GameLoop extends Canvas implements Runnable {
 		addKeyListener(input);
 		addMouseListener(mouseinput);
 		
+		// for map editor
 		level = new LevelEditor(mouseinput, 64, 64);
 		
 		System.out.println(mouseinput.clicked);
@@ -152,12 +155,18 @@ public class GameLoop extends Canvas implements Runnable {
 		int xScroll = player.x - render.width/2 ;
 		int yScroll = player.y - render.height/2 ;
 		
+		
 		level.render(xScroll, yScroll, render);
 		
 		level.update();
+		
+		// for map editor
 		level.UpdateMap(xScroll, yScroll);
 		
 		player.render(render);
+		
+		//for map editor
+		render.renderHUD();
 		
 		
 		for (int i = 0; i < px.length; i++) {

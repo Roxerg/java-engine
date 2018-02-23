@@ -8,9 +8,10 @@ public class MouseInputHandler implements MouseListener {
 	
 	public boolean clicked = false;
 	public int x, y;
+
 	
 	public void update() {
-		
+
 	}
 
 	
@@ -18,8 +19,8 @@ public class MouseInputHandler implements MouseListener {
     	
     	if (e.getButton() == MouseEvent.BUTTON1) {
     	clicked = true;
-    	x = e.getX();
-    	y = e.getY();
+    	this.x = e.getX();
+    	this.y = e.getY();
     	}
     	else 
     		clicked = false;
@@ -31,13 +32,13 @@ public class MouseInputHandler implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
