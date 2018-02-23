@@ -8,7 +8,7 @@ import Claw.Level.Tile.Tile;
 public class Screen {
 	
 	
-	public final int MAP_SIZE = 16;
+	public final int MAP_SIZE = 8;
 	public final int MAP_SIZE_MASK = MAP_SIZE - 1;
 	
 	public int xOffset, yOffset;

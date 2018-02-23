@@ -25,7 +25,7 @@ public class Level {
 		this.width = width;
 		this.height = height;
 		tiles = new int[width * height];
-		generateLevel();
+		System.out.println(tiles.length);
 	}
 	
 	protected void generateLevel() {
@@ -66,7 +66,7 @@ public class Level {
 	}
 	
 	public Tile getTile(int x, int y) {
-		//if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
+		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
 		if (tiles[x+y*width] == 1) return Tile.grass1;
 		if (tiles[x+y*width] == 2) return Tile.grass2;
 		//if (tiles[x+y*width] > 4 && tiles[x+y*width] < 9) return Tile.grass3;
@@ -75,6 +75,11 @@ public class Level {
 		if (tiles[x+y*width] == 5) return Tile.grass6;
 		if (tiles[x+y*width] == 6) return Tile.grass7;
 		return Tile.nothing;
+	}
+
+	public void UpdateMap(int xOff, int yOff) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

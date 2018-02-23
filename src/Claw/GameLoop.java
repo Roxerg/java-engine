@@ -133,6 +133,7 @@ public class GameLoop extends Canvas implements Runnable {
 		input.update();
 		player.update();
 		
+		
 		//xoff = input.xoff;
 		//yoff = input.yoff;
 		
@@ -152,6 +153,10 @@ public class GameLoop extends Canvas implements Runnable {
 		int yScroll = player.y - render.height/2 ;
 		
 		level.render(xScroll, yScroll, render);
+		
+		level.update();
+		level.UpdateMap(xScroll, yScroll);
+		
 		player.render(render);
 		
 		

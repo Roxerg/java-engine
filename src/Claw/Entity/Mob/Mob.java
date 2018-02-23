@@ -12,9 +12,9 @@ public abstract class Mob extends Entity {
 	public void move(int xx, int yy) {
 		
 		if (yy < 0) dir = 0;
-		if (xx > 0) dir = 1;
+		//if (xx > 0) dir = 1;
 		if (yy > 0) dir = 2;
-		if (xx < 0) dir = 3;
+		//if (xx < 0) dir = 3;
 		
 		if(!collision()) {
 			x += xx;

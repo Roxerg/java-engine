@@ -11,8 +11,7 @@ public class InputHandler implements KeyListener {
 	public int xoff = 0, yoff = 0;
 	public boolean up, down, left, right;
     boolean[] keys = new boolean[KEY_ARRAY_SIZE];
-    
-    public int x, y;
+
     
     public boolean clicked = false;;
     
