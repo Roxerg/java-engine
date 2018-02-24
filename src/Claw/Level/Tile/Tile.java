@@ -22,6 +22,8 @@ public class Tile {
 	
 	public static Tile nothing = new NothingTile(Sprite.nothing);
 	
+	public static Tile selection = new SelectionTile(Sprite.selection);
+	
 	public Tile(Sprite sprite) {
 		this.sprite = sprite;
 	}

@@ -9,10 +9,13 @@ public class Level {
 	
 	protected int width, height;
 	protected int[] tiles;
+	protected boolean[] selection;
+	public int a, b;
 	
 	public Level(int width, int height) {
 		this.width = width;
 		this.height = height;
+		selection = new boolean[width * height];
 		tiles = new int[width * height];
 		generateLevel();
 	}
@@ -24,6 +27,7 @@ public class Level {
 	public Level(MouseInputHandler m, int width, int height) {
 		this.width = width;
 		this.height = height;
+		selection = new boolean[width * height];
 		tiles = new int[width * height];
 		System.out.println(tiles.length);
 	}
@@ -57,13 +61,18 @@ public class Level {
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
 				getTile(x, y).render(x, y, screen);
+				if (isSelected(x, y)) Tile.selection.render(x, y, screen); 
 			}
 		}
 		
-		
-		
+	}
+	
+	public boolean isSelected(int x, int y) {
+		if (x < 0 || y < 0 || x >= width || y >= height) return false;
+		else return selection[x+y*width];
 		
 	}
+	
 	
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
@@ -76,6 +85,7 @@ public class Level {
 		if (tiles[x+y*width] == 6) return Tile.grass7;
 		return Tile.nothing;
 	}
+	
 
 	public void UpdateMap(int xOff, int yOff) {
 		// TODO Auto-generated method stub

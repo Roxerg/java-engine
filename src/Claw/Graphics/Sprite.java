@@ -14,6 +14,8 @@ public class Sprite {
 	public static Sprite player_back = new Sprite(16, 1, 2, SpriteSheet.first);
 	public static Sprite player_back_walk = new Sprite(16, 1, 3, SpriteSheet.first);
 	
+	public static Sprite selection = new Sprite(16, 1, 4 ,SpriteSheet.first);
+	
 	public static Sprite boogie =  new Sprite(16, 0, 0, SpriteSheet.first);
 	public static Sprite skelly =  new Sprite(16, 0, 1, SpriteSheet.first);
 	public static Sprite skully =  new Sprite(16, 0, 2, SpriteSheet.first);

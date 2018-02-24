@@ -1,6 +1,7 @@
 package Claw.Level;
 
 import Claw.MouseInputHandler;
+import Claw.MouseMovementHandler;
 import Claw.Graphics.Sprite;
 import Claw.Level.Tile.Tile;
 
@@ -10,14 +11,16 @@ public class LevelEditor extends Level {
 	public Tile[] tilemenu;
 	public int xOff = 0, yOff = 0;
 	public MouseInputHandler input;
+	public MouseMovementHandler move;
 	public int SelectedTile = 1;
 	
 	
 	
 	
-	public LevelEditor(MouseInputHandler input, int height, int width) {
+	public LevelEditor(MouseInputHandler input, MouseMovementHandler move, int height, int width) {
 		super(input, height, width);
 		this.input = input;
+		this.move = move;
 		//tilemenu[0] = Tile.grass1;
 		//tilemenu[1] = Tile.grass2;
 		//tilemenu[2] = Tile.stone;
@@ -28,17 +31,31 @@ public class LevelEditor extends Level {
 		
 		for (int y=0; y<height; y++) {
 			for (int x = 0; x < width; x++) {
-				tiles[0] = 1;
-				tiles[2] = 1;
-				tiles[4] = 1;
-				
+				selection[x+y*width] = false;
 				tiles[x+y*width] = 69;
 			}
+			
+			
 		}
+		tiles[0] = 1;
+		tiles[2] = 1;
+		tiles[4] = 1;
 		
 	}
 	
+public void resetSelect() {
+		
+		for (int y=0; y<height; y++) {
+			for (int x = 0; x < width; x++) {
+				selection[x+y*width] = false;
+			}
+			
+			
+		}}
+	
 	public void update() {
+		resetSelect();
+		hoverBlock();
 		placeBlock();
 		
 	}
@@ -51,21 +68,34 @@ public class LevelEditor extends Level {
 		//placeBlock();
 	}
 	
+	public void hoverBlock() {
+		int pos = a + b*width;
+		
+		if (pos >= 0 && pos < width*height) selection[pos] = true;
+		
+	}
 	
 	public void placeBlock() {
 		
+		this.a = ((xOff + move.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
+		this.b = ((yOff + move.y/3 + Sprite.nothing.SIZE ) >> 4) - 1;  
+		
 		if (input.clicked) {
 			
+				System.out.println(" movex: " + move.x + "movey: " + move.y);
+				System.out.println(" inputx: " + input.x + "inputy: " + input.y);
+				// TODO: GLOBAL OF HUD ELEMENTS FOR EASILY ADJUSTABLE HUD SIZE
 				
-				int a = ((xOff + input.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
-				int b = ((yOff + input.y/3 + Sprite.nothing.SIZE ) >> 4) - 1;  
 				
-				int ahud = ((input.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
-				int bhud = ((input.y/3 + Sprite.nothing.SIZE ) >> 4) - 1; 
+				
+				int ahud = ((move.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
+				int bhud = ((move.y/3 + Sprite.nothing.SIZE ) >> 4) - 1; 
 				
 				int xhudstart = ((300/2) - 16*2 ) >> 4;
 				int xhudend   = ((300/2) + 16*2 ) >> 4;
 				int yhud      = ((height-16)*3) >> 4;
+				
+				
 				
 				if (input.x>0) {
 					System.out.println("width " + width);

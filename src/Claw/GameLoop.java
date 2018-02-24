@@ -41,7 +41,10 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	
 	private InputHandler input;
+	
 	private MouseInputHandler mouseinput;
+	private MouseMovementHandler mousemove;
+	
 	private JFrame frame; 
 	private Thread thread;
 	private Screen render;
@@ -65,6 +68,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		// for map editor
 		mouseinput = new MouseInputHandler();
+		mousemove = new MouseMovementHandler();
 	
 		
 		//level = new RandomLevel(64, 64);
@@ -73,9 +77,10 @@ public class GameLoop extends Canvas implements Runnable {
 		player = new Player(input);
 		addKeyListener(input);
 		addMouseListener(mouseinput);
+		addMouseMotionListener(mousemove);
 		
 		// for map editor
-		level = new LevelEditor(mouseinput, 64, 64);
+		level = new LevelEditor(mouseinput, mousemove, 64, 64);
 		
 		System.out.println(mouseinput.clicked);
 		
@@ -166,7 +171,7 @@ public class GameLoop extends Canvas implements Runnable {
 		player.render(render);
 		
 		//for map editor
-		render.renderHUD();
+		render.renderHUDEditor(level.a, level.b);
 		
 		
 		for (int i = 0; i < px.length; i++) {
