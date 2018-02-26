@@ -59,11 +59,11 @@ public class Screen {
 	public void renderHUDEditor(int x, int y) {
 		for (int aa = 0; aa < Sprite.nothing.SIZE; aa++) {
 			for (int bb = 0; bb < Sprite.nothing.SIZE; bb++) {
-				px[(width/2)+ bb - 16*2 + (height-16+aa)*width] = Tile.stone.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
+				px[(width/2)+ bb - 16*2 + (height-16+aa)*width] = Tile.grass1.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
 				px[(width/2)+ bb - 16 + (height-16+aa)*width] = Tile.grass2.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
-				px[(width/2)+ bb + (height-16+aa)*width] = Tile.grass1.sprite.pixels[bb + aa*Tile.grass1.sprite.SIZE];
-				px[(width/2)+ bb + 16 + (height-16+aa)*width] = Tile.grass4.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
-				px[(width/2)+ bb + 16*2 + (height-16+aa)*width] = Tile.grass5.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
+				px[(width/2)+ bb + (height-16+aa)*width] = Tile.sand.sprite.pixels[bb + aa*Tile.grass1.sprite.SIZE];
+				px[(width/2)+ bb + 16 + (height-16+aa)*width] = Tile.stone.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
+				px[(width/2)+ bb + 16*2 + (height-16+aa)*width] = Tile.grass6.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
 				px[(width/2)+ bb + 16*3 + (height-16+aa)*width] = 0x1976D2;
 				
 			}

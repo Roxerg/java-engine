@@ -1,5 +1,7 @@
 package Claw.Level;
 
+import java.util.Random;
+
 import Claw.MouseInputHandler;
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
@@ -8,28 +10,38 @@ import Claw.Level.Tile.Tile;
 public class Level {
 	
 	protected int width, height;
-	protected int[] tiles;
+	protected Tile[] tiles;
+	protected int[] tilecolor;
+	//protected int[] tiles;
 	protected boolean[] selection;
 	public int a, b;
+	
+	
+	
+	
+	
+	
 	
 	public Level(int width, int height) {
 		this.width = width;
 		this.height = height;
 		selection = new boolean[width * height];
-		tiles = new int[width * height];
+		tilecolor = new int[width * height];
 		generateLevel();
 	}
 
 	public Level(String path) {
 		loadLevel(path);
+		generateLevel();
 	}
 	
 	public Level(MouseInputHandler m, int width, int height) {
 		this.width = width;
 		this.height = height;
 		selection = new boolean[width * height];
-		tiles = new int[width * height];
-		System.out.println(tiles.length);
+		//tilesint = new int[width * height];
+		tiles = new Tile[width * height];
+		//System.out.println(tilesint.length);
 	}
 	
 	protected void generateLevel() {
@@ -60,6 +72,14 @@ public class Level {
 		
 		for (int y = y0; y < y1; y++) {
 			for (int x = x0; x < x1; x++) {
+				//getTile(x, y).render(x, y, screen);
+				if (x + y*16 < 0 || x + y*16 >= 256 ) {
+					
+					//Tile.nothing.render(x, y, screen);
+					//continue;
+				}
+				//else tiles[x+y*width].render(x, y, screen);
+				//tiles[x+y*16].render(x, y, screen);
 				getTile(x, y).render(x, y, screen);
 				if (isSelected(x, y)) Tile.selection.render(x, y, screen); 
 			}
@@ -74,15 +94,19 @@ public class Level {
 	}
 	
 	
+	//sand = 0xffffff00;
+		// grass = 0xff00ff00;
+		// stone = 0xff666666;
+		// nothing = 0xff0000ff;
+	
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
-		if (tiles[x+y*width] == 1) return Tile.grass1;
-		if (tiles[x+y*width] == 2) return Tile.grass2;
+		if (tilecolor[x+y*width] == 0xff00ff00) {
+			return Tile.grass1;
+		}
+		if (tilecolor[x+y*width] == 0xff66666) return Tile.stone;
 		//if (tiles[x+y*width] > 4 && tiles[x+y*width] < 9) return Tile.grass3;
-		if (tiles[x+y*width] == 3) return Tile.grass4;
-		if (tiles[x+y*width] == 4) return Tile.grass5;
-		if (tiles[x+y*width] == 5) return Tile.grass6;
-		if (tiles[x+y*width] == 6) return Tile.grass7;
+		if (tilecolor[x+y*width] == 0xffffff00) return Tile.sand;
 		return Tile.nothing;
 	}
 	

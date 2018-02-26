@@ -17,6 +17,7 @@ import Claw.Graphics.Screen;
 import Claw.Level.Level;
 import Claw.Level.LevelEditor;
 import Claw.Level.RandomLevel;
+import Claw.Level.SpawnLevel;
 import Claw.InputHandler;
 import Claw.MouseInputHandler;
 import Claw.Entity.Mob.Player;
@@ -71,7 +72,7 @@ public class GameLoop extends Canvas implements Runnable {
 		mousemove = new MouseMovementHandler();
 	
 		
-		//level = new RandomLevel(64, 64);
+		//level = new SpawnLevel("/sprites/level.png");
 		
 		
 		player = new Player(input);
@@ -112,6 +113,7 @@ public class GameLoop extends Canvas implements Runnable {
 		int frames = 0;
 		int ticks = 0;
 		System.out.println("Running!");
+		
 		
 		requestFocus();
 		while (running) {

@@ -7,6 +7,7 @@ public class Tile {
 	
 	public int x, y;
 	public Sprite sprite;
+	public int ColorCode;
 	
 	
 	public static Tile grass1 = new GrassTile(Sprite.grass1);

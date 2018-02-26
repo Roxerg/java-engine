@@ -5,8 +5,10 @@ import Claw.Graphics.Sprite;
 
 public class GrassTile extends Tile {
 	
+	
 	public GrassTile(Sprite sprite) {
 		super(sprite);
+		this.ColorCode = 0xff00ff00;
 	}
 	
 	public void render(int x, int y, Screen screen) {
