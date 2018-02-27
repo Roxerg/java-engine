@@ -1,12 +1,15 @@
 package Claw.Level;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import Claw.MouseInputHandler;
 import Claw.MouseMovementHandler;
+import Claw.Entity.Mob.Player;
 import Claw.Graphics.Sprite;
 import Claw.Level.Tile.Tile;
 
@@ -27,6 +30,8 @@ public class LevelEditor extends Level {
 		super(input, height, width);
 		this.input = input;
 		this.move = move;
+		//this.xOff = initx;
+		//this.yOff = inity;
 		//tilemenu[0] = Tile.grass1;
 		//tilemenu[1] = Tile.grass2;
 		//tilemenu[2] = Tile.stone;
@@ -111,8 +116,8 @@ public class LevelEditor extends Level {
 	
 	public void placeBlock() {
 		
-		this.a = ((xOff + move.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
-		this.b = ((yOff + move.y/3 + Sprite.nothing.SIZE ) >> 4) - 1;  
+		this.a = (( xOff + move.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
+		this.b = (( yOff + move.y/3 + Sprite.nothing.SIZE ) >> 4) - 1;  
 		
 		if (input.clicked) {
 			
@@ -125,8 +130,10 @@ public class LevelEditor extends Level {
 				int ahud = ((move.x/3 + Sprite.nothing.SIZE ) >> 4) - 1;
 				int bhud = ((move.y/3 + Sprite.nothing.SIZE ) >> 4) - 1; 
 				
+				
+				// DEFINES THE WIDTH OF THE MENU (16*x)
 				int xhudstart = ((300/2) - 16*2 ) >> 4;
-				int xhudend   = ((300/2) + 16*2 ) >> 4;
+				int xhudend   = ((300/2) + 16*4 ) >> 4;
 				int yhud      = ((64-16)*3) >> 4;
 				
 				
@@ -138,6 +145,8 @@ public class LevelEditor extends Level {
 				}
 				
 				
+				// DEFINES THE SELECTIONS OF THE MENU
+				
 				if (ahud >= xhudstart && ahud < xhudend && bhud == yhud) {
 					System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
 					System.out.println("accessed hud!");
@@ -147,22 +156,25 @@ public class LevelEditor extends Level {
 						System.out.println("1 selected!");
 					}
 					if (ahud == xhudstart + 1) {
-						SelectedTile = 0xff00ff00;
+						SelectedTile = Tile.grass2.ColorCode;
 						System.out.println("2 selected!");
 					}
 					if (ahud == xhudstart + 2) {
-						SelectedTile = 0xffffff00;
+						SelectedTile = Tile.sand.ColorCode;
 						System.out.println("3 selected!");
 					}
 					if (ahud == xhudstart + 3) {
-						SelectedTile = 0xff66666;
+						SelectedTile = Tile.stone.ColorCode;
 						System.out.println("4 selected!");
 					}
 					if (ahud == xhudstart + 4) {
-						SelectedTile = 0xff00ff00;
+						SelectedTile = Tile.grass3.ColorCode;
 						System.out.println("5 selected!");
 					}
-					
+					if (ahud == xhudstart + 5) {
+						SelectedTile = Tile.nothing.ColorCode;
+						System.out.println("6 selected!");
+					}
 					
 					input.clicked = false;
 					
@@ -177,10 +189,41 @@ public class LevelEditor extends Level {
 				input.clicked = false;
 				
 				}
+	
 			
 		}
 	}
 	
+	
+	public void saveMapState() {
+		
+		System.out.println("MAP SAVED!");
+		
+		BufferedImage map = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				map.setRGB(x, y, tilecolor[x+y*width]);
+			}
+		}
+		
+		File outputfile = new File("res/sprites/level.png");
+		try {
+			ImageIO.write(map, "png", outputfile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public int hex2RGB(int x) {
+		return 0;
+	}
+	
+
+
 	
 	
 	

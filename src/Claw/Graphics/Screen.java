@@ -64,7 +64,7 @@ public class Screen {
 				px[(width/2)+ bb + (height-16+aa)*width] = Tile.sand.sprite.pixels[bb + aa*Tile.grass1.sprite.SIZE];
 				px[(width/2)+ bb + 16 + (height-16+aa)*width] = Tile.stone.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
 				px[(width/2)+ bb + 16*2 + (height-16+aa)*width] = Tile.grass6.sprite.pixels[bb + aa*Tile.grass2.sprite.SIZE];
-				px[(width/2)+ bb + 16*3 + (height-16+aa)*width] = 0x1976D2;
+				px[(width/2)+ bb + 16*3 + (height-16+aa)*width] = Tile.nothing.ColorCode;
 				
 			}
 		}

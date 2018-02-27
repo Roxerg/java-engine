@@ -10,12 +10,13 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
+	public static int initialx = 100, initialy = 100;
 	
 	public Player(InputHandler input) {
 		this.input = input;
 	}
 	
-	public Player(int x, int y) {
+	public Player(int x, int y, InputHandler input) {
 		this.x = x;
 		this.y = y;
 		this.input = input;

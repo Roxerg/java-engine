@@ -60,6 +60,10 @@ public class Level {
 		
 	}
 	
+	public void saveMapState() {
+		
+	}
+	
 	public void render(int xScroll, int yScroll, Screen screen) {
 		
 		screen.setOffset(xScroll, yScroll);
@@ -101,10 +105,10 @@ public class Level {
 	
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.nothing;
-		if (tilecolor[x+y*width] == 0xff00ff00) {
-			return Tile.grass1;
-		}
-		if (tilecolor[x+y*width] == 0xff66666) return Tile.stone;
+		if (tilecolor[x+y*width] == Tile.grass1.ColorCode) return Tile.grass1;
+		if (tilecolor[x+y*width] == Tile.grass2.ColorCode) return Tile.grass2;
+		if (tilecolor[x+y*width] == Tile.grass3.ColorCode) return Tile.grass3;
+		if (tilecolor[x+y*width] == 0xff666666) return Tile.stone;
 		//if (tiles[x+y*width] > 4 && tiles[x+y*width] < 9) return Tile.grass3;
 		if (tilecolor[x+y*width] == 0xffffff00) return Tile.sand;
 		return Tile.nothing;
