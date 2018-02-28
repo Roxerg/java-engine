@@ -82,7 +82,7 @@ public class GameLoop extends Canvas implements Runnable {
 		addMouseMotionListener(mousemove);
 		
 		// for map editor
-		level = new LevelEditor(mouseinput, mousemove, 64, 64);
+		level = new LevelEditor(mouseinput, mousemove, 100, 100);
 		
 		System.out.println(mouseinput.clicked);
 		
