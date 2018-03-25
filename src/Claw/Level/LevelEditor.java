@@ -108,10 +108,12 @@ public class LevelEditor extends Level {
 	
 	public void UpdateMap(int xOff, int yOff) {
 		
+		if (edit) {
 		this.xOff = xOff;
 		this.yOff = yOff;
 		
 		placeBlock();
+		}
 	}
 	
 	public void hoverBlock() {

@@ -80,7 +80,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		
 		player = new Player(initialx, initialy, input, mouseinput);
-		gun = new Gun(player, mouseinput);
+		gun = new Gun(player, mouseinput, mousemove);
 		addKeyListener(input);
 		addMouseListener(mouseinput);
 		addMouseMotionListener(mousemove);

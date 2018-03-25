@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Claw.MouseInputHandler;
+import Claw.MouseMovementHandler;
 import Claw.Entity.Entity;
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
@@ -23,19 +24,24 @@ public class Gun extends Entity {
 	private Sprite sprite;
 	
 	private MouseInputHandler mih;
+	private MouseMovementHandler mmh;
 	
 	
-	public Gun(Player player, MouseInputHandler mih) {
+	public Gun(Player player, MouseInputHandler mih, MouseMovementHandler mmh) {
 		this.player = player;
 		this.sprite = Sprite.skully;
 		this.mih = mih;
+		this.mmh = mmh;
 		this.bulletlist = new ArrayList<Bullet>();
+		
 	}
 	
 	
 	public void shoot() {
-		bulletlist.add(new Bullet(x, y));
+		bulletlist.add(new Bullet(x, y, mih.x, mih.y));
 		System.out.println("shoot!");
+		System.out.println(mih.y);
+		System.out.println(mih.x);
 		
 		// add if statements and shit for
 		// dictating firing speed;
