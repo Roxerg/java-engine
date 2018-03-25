@@ -20,6 +20,7 @@ import Claw.Level.RandomLevel;
 import Claw.Level.SpawnLevel;
 import Claw.InputHandler;
 import Claw.MouseInputHandler;
+import Claw.Entity.Mob.Gun;
 import Claw.Entity.Mob.Player;
 
 public class GameLoop extends Canvas implements Runnable {
@@ -54,6 +55,7 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	private Level  level;
 	private Player player;
+	private Gun gun; 
 	
 	
 	public GameLoop() {
@@ -78,6 +80,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		
 		player = new Player(initialx, initialy, input, mouseinput);
+		gun = new Gun(player, mouseinput);
 		addKeyListener(input);
 		addMouseListener(mouseinput);
 		addMouseMotionListener(mousemove);
@@ -144,6 +147,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		input.update();
 		player.update();
+		gun.update();
 		
 		if (input.saveMap) {
 			input.saveMap = false;
@@ -184,6 +188,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		
 		player.render(render);
+		gun.render(render);
 		
 		//for map editor
 		if (editorEnabled) {

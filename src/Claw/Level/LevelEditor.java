@@ -121,7 +121,7 @@ public class LevelEditor extends Level {
 		
 		if (input.clicked) {
 			
-				System.out.println(" movex: " + move.x + "movey: " + move.y);
+				//System.out.println(" movex: " + move.x + "movey: " + move.y);
 				System.out.println(" inputx: " + input.x + "inputy: " + input.y);
 				// TODO: GLOBAL OF HUD ELEMENTS FOR EASILY ADJUSTABLE HUD SIZE
 				
@@ -139,8 +139,8 @@ public class LevelEditor extends Level {
 				
 				
 				if (input.x>0) {
-					System.out.println("width " + width);
-					System.out.println("AHUD: " +xhudend+">"+ ahud + ">" + xhudstart +" BHUD: " + bhud + "==" + yhud);
+					//System.out.println("width " + width);
+					//System.out.println("AHUD: " +xhudend+">"+ ahud + ">" + xhudstart +" BHUD: " + bhud + "==" + yhud);
 					input.clicked = false;
 				}
 				
@@ -148,8 +148,8 @@ public class LevelEditor extends Level {
 				// DEFINES THE SELECTIONS OF THE MENU
 				
 				if (ahud >= xhudstart && ahud < xhudend && bhud == yhud) {
-					System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
-					System.out.println("accessed hud!");
+					//System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
+					//System.out.println("accessed hud!");
 					
 					if (ahud == xhudstart) {
 						SelectedTile = Tile.grass1.ColorCode;
@@ -181,11 +181,11 @@ public class LevelEditor extends Level {
 				}
 				else if (a >= 0 && b >= 0 && a < tiles.length && b < tiles.length) {
 				
-				System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
+				//System.out.println("AHUD: " + ahud + " BHUD: " + bhud + " YHUD: " + yhud);
 				tilecolor[a + b*width] = SelectedTile;
 				System.out.println("a: " + a + " b: " + b);
-				System.out.println("xOff: " + xOff + " yOff: " + yOff);
-				System.out.println("placed at " + a);
+				//System.out.println("xOff: " + xOff + " yOff: " + yOff);
+				//System.out.println("placed at " + a);
 				input.clicked = false;
 				
 				}

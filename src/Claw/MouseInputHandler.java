@@ -8,6 +8,7 @@ public class MouseInputHandler implements MouseListener {
 	
 	
 	public boolean clicked = false;
+	public boolean pressed = false;
 	public int x, y;
 
 	
@@ -32,6 +33,7 @@ public class MouseInputHandler implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		this.pressed = true;
 		this.x = e.getX();
 		this.y = e.getY();
 		
@@ -40,6 +42,7 @@ public class MouseInputHandler implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		this.pressed = false;
 		this.x = e.getX();
 		this.y = e.getY();
 	

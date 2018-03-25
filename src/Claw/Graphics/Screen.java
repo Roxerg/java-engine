@@ -128,7 +128,11 @@ public class Screen {
 		
 	}
 	
+	public void renderSprite(int xp, int yp, Sprite sprite) {
+		renderPlayer(xp, yp, sprite);
+	}
 	
+	 
 	
 	public void setOffset(int xOffset, int yOffset) {
 		
