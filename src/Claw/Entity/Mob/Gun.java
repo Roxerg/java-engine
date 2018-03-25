@@ -15,7 +15,7 @@ import Claw.Entity.Projectile.Bullet;
 public class Gun extends Entity {
 	
 	
-	public int x, y;
+	public int x, y, xs, ys;
 	private Player player;
 	private boolean removed = false;
 	protected Level level;
@@ -37,11 +37,28 @@ public class Gun extends Entity {
 	}
 	
 	
-	public void shoot() {
-		bulletlist.add(new Bullet(x, y, mih.x, mih.y));
-		System.out.println("shoot!");
-		System.out.println(mih.y);
-		System.out.println(mih.x);
+	public void shoot(int xs, int ys) {
+		
+		//int xs, ys;
+		
+		if (mmh.xs != 0) {
+			xs = mmh.xs;
+		}
+		else {
+			xs = mmh.x;
+		}
+		
+		if (mmh.ys != 0) {
+			ys = mmh.ys;
+		}
+		else {
+			ys = mmh.y;
+		}
+		
+		bulletlist.add(new Bullet(x, y, xs, ys));
+		//System.out.println("shoot!");
+		//System.out.println(mih.y);
+		//System.out.println(mih.x);
 		
 		// add if statements and shit for
 		// dictating firing speed;
@@ -56,8 +73,12 @@ public class Gun extends Entity {
 			b.update();
 		}
 		
+		
+		this.xs = mmh.x;
+		this.ys = mmh.y;
+		
 		if (mih.pressed) {
-			shoot();
+			shoot(mih.x, mih.y);
 		}
 		
 	}

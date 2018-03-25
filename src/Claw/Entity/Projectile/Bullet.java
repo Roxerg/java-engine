@@ -8,6 +8,7 @@ import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
 import Claw.Level.Level;
 import Claw.MouseInputHandler;
+import Claw.MouseMovementHandler;
 
 public class Bullet extends Entity {
 	
@@ -23,24 +24,34 @@ public class Bullet extends Entity {
 	
 	
 	
-	public Bullet(int x, int y, int xclick, int yclick) {
+	public Bullet(int x, int y, int xs, int ys) {
 		
 		this.sprite = Sprite.skully;
 		this.x = x;
 		this.y = y;
-		this.yclick = yclick;
-		this.xclick = xclick;
+		this.xclick = xs;
+		this.yclick = ys;
 		
-		int len = (int)Math.sqrt(xclick*xclick + yclick*yclick);
+		
+		if (this.xclick > 450) {
+			//this.xclick *= -1;
+		}
+		if (this.yclick > 250) {
+			//this.yclick *= -1;
+		}
+		//this.yclick = yclick;
+		//this.xclick = xclick;
+		
+		int len = (int)Math.sqrt((xclick-x)*(xclick-x) + (yclick-y)*(yclick-y));
 		
 		System.out.println(len);
 		
-		double temp1 = ((((double)xclick/(double)len)*10));
-		double temp2 = ((((double)yclick/(double)len)*10));
-		this.deltay = (int)temp1;
-		this.deltax = (int)temp2;
+		double temp1 = ((((double)(xclick-x)/(double)len)*10));
+		double temp2 = ((((double)(yclick-y)/(double)len)*10));
+		this.deltay = (int)temp2;
+		this.deltax = (int)temp1;
 		
-		System.out.println("x: " + temp1 + " y: " + temp2);
+		System.out.println("x: " + deltax + " y: " + deltay);
 		
 	}
 	

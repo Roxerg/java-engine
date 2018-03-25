@@ -154,6 +154,8 @@ public class GameLoop extends Canvas implements Runnable {
 			level.saveMapState();
 		}
 		
+		//System.out.println("x: " + mousemove.x + " y: " + mousemove.y);
+		
 		
 		
 		//xoff = input.xoff;
