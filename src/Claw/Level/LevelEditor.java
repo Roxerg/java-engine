@@ -22,14 +22,16 @@ public class LevelEditor extends Level {
 	public MouseInputHandler input;
 	public MouseMovementHandler move;
 	public int SelectedTile = 0xff00ff00;
+	public boolean edit;
 	
 	
 	
 	
-	public LevelEditor(MouseInputHandler input, MouseMovementHandler move, int height, int width) {
+	public LevelEditor(MouseInputHandler input, MouseMovementHandler move, int height, int width, boolean edit) {
 		super(input, height, width);
 		this.input = input;
 		this.move = move;
+		this.edit = edit;
 		//this.xOff = initx;
 		//this.yOff = inity;
 		//tilemenu[0] = Tile.grass1;
@@ -93,9 +95,14 @@ public class LevelEditor extends Level {
 		}}
 	
 	public void update() {
-		resetSelect();
-		hoverBlock();
-		placeBlock();
+		
+		
+		//let edit map if level editor is enabled
+		if (edit) {
+			resetSelect();
+			hoverBlock();
+			placeBlock();
+		}
 		
 	}
 	
