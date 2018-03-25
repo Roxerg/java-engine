@@ -34,7 +34,8 @@ public class GameLoop extends Canvas implements Runnable {
     public static int windowHeight = windowWidth / 16 * 9;
     public static int scale = 3;
     public static String title = "Project Claw";
-    public static int initialx = 100, initialy = 100;
+    public static int initialx = 400, initialy = 400;
+    public boolean editorEnabled = false;
 	
 	private boolean running = false;
 	
@@ -76,7 +77,7 @@ public class GameLoop extends Canvas implements Runnable {
 		//level = new SpawnLevel("/sprites/level.png");
 		
 		
-		player = new Player(initialx, initialy, input);
+		player = new Player(initialx, initialy, input, mouseinput);
 		addKeyListener(input);
 		addMouseListener(mouseinput);
 		addMouseMotionListener(mousemove);
@@ -175,14 +176,20 @@ public class GameLoop extends Canvas implements Runnable {
 		level.update();
 		
 		// for map editor
-		level.UpdateMap(xScroll, yScroll);
+		if (editorEnabled) {
+			level.UpdateMap(xScroll, yScroll);
+		}
+		
 		
 		
 		
 		player.render(render);
 		
 		//for map editor
-		render.renderHUDEditor(level.a, level.b);
+		if (editorEnabled) {
+			render.renderHUDEditor(level.a, level.b);
+		}
+		
 		
 		
 		for (int i = 0; i < px.length; i++) {
