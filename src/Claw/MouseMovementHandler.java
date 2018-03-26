@@ -15,8 +15,8 @@ public class MouseMovementHandler extends MouseMotionAdapter {
 	}
 	
 	public void mouseDragged(MouseEvent e) {
-		this.xs = e.getX();
-		this.ys = e.getY();
+		this.x = e.getX();
+		this.y = e.getY();
 	}
 
 

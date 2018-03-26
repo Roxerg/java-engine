@@ -42,12 +42,12 @@ public class Bullet extends Entity {
 		//this.yclick = yclick;
 		//this.xclick = xclick;
 		
-		int len = (int)Math.sqrt((xclick-x)*(xclick-x) + (yclick-y)*(yclick-y));
+		int len = (int)Math.sqrt((xclick-450)*(xclick-450) + (yclick-250)*(yclick-250));
 		
 		System.out.println(len);
 		
-		double temp1 = ((((double)(xclick-x)/(double)len)*10));
-		double temp2 = ((((double)(yclick-y)/(double)len)*10));
+		double temp1 = ((((double)(xclick-450)/(double)len)*10));
+		double temp2 = ((((double)(yclick-250)/(double)len)*10));
 		this.deltay = (int)temp2;
 		this.deltax = (int)temp1;
 		

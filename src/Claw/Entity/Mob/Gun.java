@@ -44,15 +44,9 @@ public class Gun extends Entity {
 		if (mmh.xs != 0) {
 			xs = mmh.xs;
 		}
-		else {
-			xs = mmh.x;
-		}
 		
 		if (mmh.ys != 0) {
 			ys = mmh.ys;
-		}
-		else {
-			ys = mmh.y;
 		}
 		
 		bulletlist.add(new Bullet(x, y, xs, ys));
