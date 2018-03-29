@@ -21,7 +21,9 @@ public class Sprite {
 	public static Sprite skully =  new Sprite(16, 0, 2, SpriteSheet.first);
 	
 	//public static Sprite kitty  =  new Sprite(16, 1, 0, SpriteSheet.first);
-	public static Sprite uzi    =  new Sprite(16, 1, 1, SpriteSheet.first);
+	public static Sprite uzi    =  new Sprite(16, 0, 3, SpriteSheet.first);
+	public static Sprite uzi2   =  new Sprite(16, 0, 4, SpriteSheet.first);
+	public static Sprite bullet =  new Sprite(16, 0, 5, SpriteSheet.first);
 	
 	public static Sprite grass1 =  new Sprite(16, 2, 0, SpriteSheet.first);
 	public static Sprite grass2 =  new Sprite(16, 2, 1, SpriteSheet.first);

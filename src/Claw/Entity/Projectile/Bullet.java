@@ -21,12 +21,14 @@ public class Bullet extends Entity {
 	protected final Random random = new Random();
 	private Sprite sprite;
 	
+	private int refresh = 0;
+	
 	
 	
 	
 	public Bullet(int x, int y, int xs, int ys) {
 		
-		this.sprite = Sprite.skully;
+		this.sprite = Sprite.bullet;
 		this.x = x;
 		this.y = y;
 		this.xclick = xs;
@@ -48,8 +50,22 @@ public class Bullet extends Entity {
 		
 		double temp1 = ((((double)(xclick-450)/(double)len)*10));
 		double temp2 = ((((double)(yclick-250)/(double)len)*10));
-		this.deltay = (int)temp2;
-		this.deltax = (int)temp1;
+		
+		Random random = new Random();
+		
+
+		this.x += random.nextInt(3);
+		this.y += random.nextInt(3);
+		this.y -= random.nextInt(3);
+		
+		this.deltay = (int)temp2 + random.nextInt(5);
+		this.deltax = (int)temp1 + random.nextInt(3);
+		
+		this.deltay = (int)temp2 - random.nextInt(2);
+		this.deltax = (int)temp1 - random.nextInt(2);
+		
+		
+		
 		
 		System.out.println("x: " + deltax + " y: " + deltay);
 		
@@ -57,9 +73,13 @@ public class Bullet extends Entity {
 	
 	public void update() {
 		
-		x += deltax;
-		y += deltay;
-	
+		refresh++;
+		
+		if (refresh%2 == 0) {
+			x += deltax;
+			y += deltay;
+		}
+		
 	}
 	
 	public void render(Screen screen) {

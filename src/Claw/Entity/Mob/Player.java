@@ -14,6 +14,7 @@ public class Player extends Mob {
 	private boolean walking = false;
 	public static int initialx = 100, initialy = 100;
 	
+	public boolean front = true;
 	
 	public Player(InputHandler input) {
 		this.input = input;
@@ -61,6 +62,7 @@ public class Player extends Mob {
 		int ycent = y - 8;
 		
 		if (dir == 2) {
+			this.front = true;
 			sprite = Sprite.player_front;
 			if (walking) {
 				if (anim % 20 > 10) {
@@ -70,6 +72,7 @@ public class Player extends Mob {
 			
 		}
 		if (dir == 0) {
+			this.front = false;
 			sprite = Sprite.player_back;
 			if (walking) {
 				if (anim % 20 > 10) {

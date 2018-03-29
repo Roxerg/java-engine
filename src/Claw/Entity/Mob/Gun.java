@@ -25,11 +25,11 @@ public class Gun extends Entity {
 	
 	private MouseInputHandler mih;
 	private MouseMovementHandler mmh;
-	
+	private int refresh = 0;
 	
 	public Gun(Player player, MouseInputHandler mih, MouseMovementHandler mmh) {
 		this.player = player;
-		this.sprite = Sprite.skully;
+		this.sprite = Sprite.uzi;
 		this.mih = mih;
 		this.mmh = mmh;
 		this.bulletlist = new ArrayList<Bullet>();
@@ -39,17 +39,24 @@ public class Gun extends Entity {
 	
 	public void shoot(int xs, int ys) {
 		
-		//int xs, ys;
+		int a;
 		
-		if (mmh.xs != 0) {
-			xs = mmh.xs;
+		if (mmh.x <450) {
+			a = x-6;
+		}
+		else {
+			a = x+6;
 		}
 		
-		if (mmh.ys != 0) {
-			ys = mmh.ys;
+		if (mmh.x != 0) {
+			xs = mmh.x; 
 		}
 		
-		bulletlist.add(new Bullet(x, y, xs, ys));
+		if (mmh.y != 0) {
+			ys = mmh.y;
+		}
+		
+		bulletlist.add(new Bullet(a, y-1, xs, ys));
 		//System.out.println("shoot!");
 		//System.out.println(mih.y);
 		//System.out.println(mih.x);
@@ -60,8 +67,17 @@ public class Gun extends Entity {
 	
 	public void update() {
 		
-		x = player.x;
-		y = player.y;
+		
+		if (mmh.x < 450) {
+			x = player.x-12;
+			y = player.y-4;
+			this.sprite = Sprite.uzi;
+		}
+		else {
+			x = player.x-1;
+			y = player.y-4;
+			this.sprite = Sprite.uzi2;
+		}
 		
 		for (Bullet b : bulletlist) {
 			b.update();
@@ -70,17 +86,36 @@ public class Gun extends Entity {
 		
 		this.xs = mmh.x;
 		this.ys = mmh.y;
+		 
+		refresh++;
 		
-		if (mih.pressed) {
-			shoot(mih.x, mih.y);
+		if (mih.pressed && refresh%5 == 2) {
+			
+			System.out.println(mmh.x);
+			if (mmh.x < 450) {
+				shoot(mih.x-3, mih.y);
+			}
+			else {
+				shoot(mih.x+3, mih.y);
+			}
+			
+		}
+		
+		if (refresh > 200) {
+			refresh = 0;
 		}
 		
 	}
 	
 	public void render(Screen screen) {
 		
-		
+		//if (player.front) {
 		screen.renderSprite(x, y, sprite);
+		//}
+		//else {
+		//	screen.renderSprite(x, y, sprite);
+		//}
+		
 		
 		for (Bullet b : bulletlist) {
 			b.render(screen);
