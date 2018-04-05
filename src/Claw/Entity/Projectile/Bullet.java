@@ -46,7 +46,7 @@ public class Bullet extends Entity {
 		
 		int len = (int)Math.sqrt((xclick-450)*(xclick-450) + (yclick-250)*(yclick-250));
 		
-		System.out.println(len);
+		//System.out.println(len);
 		
 		double temp1 = ((((double)(xclick-450)/(double)len)*10));
 		double temp2 = ((((double)(yclick-250)/(double)len)*10));
@@ -67,7 +67,7 @@ public class Bullet extends Entity {
 		
 		
 		
-		System.out.println("x: " + deltax + " y: " + deltay);
+		//System.out.println("x: " + deltax + " y: " + deltay);
 		
 	}
 	

@@ -28,8 +28,8 @@ public abstract class Mob extends Entity {
 		
 	}
 	
-	private boolean collision() {
-		return false;
+	public boolean collision() {
+		return super.collision();
 	}
 	
 	

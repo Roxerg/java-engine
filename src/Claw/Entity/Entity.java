@@ -27,5 +27,11 @@ public abstract class Entity {
 	public boolean isRemoved() {
 		return removed;
 	}
+	
+	public boolean collision() {
+		
+		
+		return false;
+	}
 
 }

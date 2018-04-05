@@ -10,11 +10,14 @@ import Claw.Level.Tile.Tile;
 public class Level {
 	
 	protected int width, height;
+
+	//tiles was protected too
 	protected Tile[] tiles;
-	protected int[] tilecolor;
-	//protected int[] tiles;
+	public int[] tilecolor;
+	//protected Tile[] tiles;
 	protected boolean[] selection;
 	public int a, b;
+	
 	
 	
 	
@@ -84,6 +87,8 @@ public class Level {
 				}
 				//else tiles[x+y*width].render(x, y, screen);
 				//tiles[x+y*16].render(x, y, screen);
+				
+				
 				getTile(x, y).render(x, y, screen);
 				if (isSelected(x, y)) Tile.selection.render(x, y, screen); 
 			}

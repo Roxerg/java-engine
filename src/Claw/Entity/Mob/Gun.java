@@ -91,7 +91,7 @@ public class Gun extends Entity {
 		
 		if (mih.pressed && refresh%5 == 2) {
 			
-			System.out.println(mmh.x);
+			//System.out.println(mmh.x);
 			if (mmh.x < 450) {
 				shoot(mih.x-3, mih.y);
 			}

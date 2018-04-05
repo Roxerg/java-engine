@@ -48,6 +48,7 @@ public class Player extends Mob {
 		}
 		else {
 			walking = false;
+			//System.out.println("x: " + x + " y: "+ y);
 		}
 		
 	}

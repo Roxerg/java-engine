@@ -20,6 +20,7 @@ import Claw.Level.RandomLevel;
 import Claw.Level.SpawnLevel;
 import Claw.InputHandler;
 import Claw.MouseInputHandler;
+import Claw.Collision.CollisionDetection;
 import Claw.Entity.Mob.Gun;
 import Claw.Entity.Mob.Player;
 
@@ -38,6 +39,9 @@ public class GameLoop extends Canvas implements Runnable {
     public static int initialx = 400, initialy = 400;
     public boolean editorEnabled = false;
 	
+    public static int levelWidth = 100;
+    public static int levelHeight = 100;
+    
 	private boolean running = false;
 	
 	private BufferedImage view = new BufferedImage(windowWidth, windowHeight, BufferedImage.TYPE_INT_RGB);
@@ -56,6 +60,8 @@ public class GameLoop extends Canvas implements Runnable {
 	private Level  level;
 	private Player player;
 	private Gun gun; 
+	
+	private CollisionDetection collision;
 	
 	
 	public GameLoop() {
@@ -79,16 +85,22 @@ public class GameLoop extends Canvas implements Runnable {
 		//level = new SpawnLevel("/sprites/level.png");
 		
 		
+		
 		player = new Player(initialx, initialy, input, mouseinput);
 		gun = new Gun(player, mouseinput, mousemove);
+		
+		
+		
 		addKeyListener(input);
 		addMouseListener(mouseinput);
 		addMouseMotionListener(mousemove);
 		
 		// for map editor
-		level = new LevelEditor(mouseinput, mousemove, 100, 100, editorEnabled);
+		level = new LevelEditor(mouseinput, mousemove, levelWidth, levelHeight, editorEnabled);
 		
-		System.out.println(mouseinput.clicked);
+		collision = new CollisionDetection(player, level.tilecolor, levelWidth, levelHeight);
+		
+		//System.out.println(mouseinput.clicked);
 		
 	}
 	
@@ -154,6 +166,11 @@ public class GameLoop extends Canvas implements Runnable {
 			level.saveMapState();
 		}
 		
+		level.update();
+		
+		
+		collision.update();
+		
 		//System.out.println("x: " + mousemove.x + " y: " + mousemove.y);
 		
 		
@@ -179,13 +196,12 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		level.render(xScroll, yScroll, render);
 		
-		level.update();
 		
 		// for map editor
 		if (editorEnabled) {
 			level.UpdateMap(xScroll, yScroll);
 		}
-		
+				
 		
 		
 		
