@@ -10,21 +10,21 @@ public class CollisionDetection {
 	
 	
 	
-	private Player player;
+	//public Player player;
 	private ArrayList<Collider> collisions;
 	private int width, height;
 	
 	
 	
 	// do a separate check to see if the tile that was just placed is a solid one, if so, add it to list.
-	public CollisionDetection(Player p, int[] tiles, int width, int height) {
+	public CollisionDetection(int[] tiles, int width, int height) {
 		
-		this.player = p;
-		collisions = new ArrayList<Collider>(1000);
+		//this.player = p;
+		collisions = new ArrayList<Collider>(10000);
 		this.width = width;
 		this.height = height;
 		
-		
+		/*
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
 				if (tiles[x+y*width] == 0xff666666) {
@@ -32,28 +32,44 @@ public class CollisionDetection {
 				}
 			}
 		}
+		*/
+		collisions.add(new Collider(0, 0));
 		
-		for (Collider c : collisions) {
-			System.out.println("collision! cx: " + c.getX() + " cy: " + c.getY());
-		}
+		//for (Collider c : collisions) {
+		//	System.out.println("collision! cx: " + c.getX() + " cy: " + c.getY());
+		//}
 		
 	}
 	
 	
 	
 	
-	public void update() {
+	public boolean update(int x, int y) {
+	
+		System.out.println(x + " " +y );
+		double radius = (double)Math.sqrt(Math.pow(Sprite.grass1.SIZE/2, 2) + Math.pow(Sprite.grass1.SIZE/2, 2))*2;
 		
 		for (Collider c : collisions) {
-			
 			//System.out.println(c.getX());
 			
-			if (c.getX() > player.x && c.getX()-16 < player.x 
+			/*if (c.getX() > player.x && c.getX()-16 < player.x 
 			 && c.getY()-16 < player.y && c.getY() > player.y) {
 				System.out.println("collision! cx: " + c.getX() + "px: " + player.x + " cy: " + c.getY() + " py: " + player.y);
+			}*/
+			double dist = (double)Math.sqrt(Math.pow(Math.abs(c.getX()+8 - x), 2) + Math.pow(Math.abs(c.getY()+8 - y), 2));
+			System.out.println("dist" + " " + dist);
+			if (dist <= radius) {
+				System.out.println(" partial collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
+				if ((c.getX()+16 > x+8 || c.getX()+16 > x-8) && (c.getX() < x+8 || c.getX() < x-8)
+				 && (c.getY() < y+8 || c.getY() < y-8) && (c.getY()+16 > y+8 || c.getY()+16 > y-8)) {
+					System.out.println("collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
+					return true;
+				}
+				//System.out.println("collision!" + dist + " " + radius + " " + Sprite.grass1.SIZE);
+				//return true;
 			}
-			
 		}
+		return false;
 		
 	}
 

@@ -36,7 +36,7 @@ public class GameLoop extends Canvas implements Runnable {
     public static int windowHeight = windowWidth / 16 * 9;
     public static int scale = 3;
     public static String title = "Project Claw";
-    public static int initialx = 400, initialy = 400;
+    public static int initialx = 100, initialy = 100;
     public boolean editorEnabled = false;
 	
     public static int levelWidth = 100;
@@ -86,8 +86,8 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		
 		
-		player = new Player(initialx, initialy, input, mouseinput);
-		gun = new Gun(player, mouseinput, mousemove);
+		
+		
 		
 		
 		
@@ -98,7 +98,10 @@ public class GameLoop extends Canvas implements Runnable {
 		// for map editor
 		level = new LevelEditor(mouseinput, mousemove, levelWidth, levelHeight, editorEnabled);
 		
-		collision = new CollisionDetection(player, level.tilecolor, levelWidth, levelHeight);
+		
+		collision = new CollisionDetection(level.tilecolor, levelWidth, levelHeight);
+		player = new Player(initialx, initialy, input, mouseinput, collision);
+		gun = new Gun(player, mouseinput, mousemove);
 		
 		//System.out.println(mouseinput.clicked);
 		
@@ -169,7 +172,7 @@ public class GameLoop extends Canvas implements Runnable {
 		level.update();
 		
 		
-		collision.update();
+		//collision.update();
 		
 		//System.out.println("x: " + mousemove.x + " y: " + mousemove.y);
 		

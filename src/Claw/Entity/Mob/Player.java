@@ -2,6 +2,7 @@ package Claw.Entity.Mob;
 
 import Claw.InputHandler;
 import Claw.MouseInputHandler;
+import Claw.Collision.CollisionDetection;
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
 
@@ -12,7 +13,10 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
-	public static int initialx = 100, initialy = 100;
+	
+	private CollisionDetection col;
+	
+	//public static int initialx = 100, initialy = 100;
 	
 	public boolean front = true;
 	
@@ -20,20 +24,38 @@ public class Player extends Mob {
 		this.input = input;
 	}
 	
-	public Player(int x, int y, InputHandler input, MouseInputHandler mouseinput) {
+	public Player(int x, int y, InputHandler input, MouseInputHandler mouseinput, CollisionDetection col) {
 		this.x = x;
 		this.y = y;
 		this.input = input;
+		this.col = col;
 		this.mouseinput = mouseinput;
 		sprite = Sprite.player_front;
 	}
 	
 	public void update() {
 		int xa = 0, ya = 0;
-		if (input.up) ya--;
-		if (input.down) ya++;
-		if (input.left) xa--;
-		if (input.right) xa++;
+		
+		//collision = col.update(x, y);
+		
+		
+		//skating
+		/*
+		if (true) {
+			if (input.up && col.update(x, y--)) ya--;
+			if (input.down && col.update(x, y++)) ya++;
+			if (input.left && col.update(x--, y)) xa--;
+			if (input.right && col.update(x++, y)) xa++;
+		}
+		*/
+		
+		if (true) {
+			if (input.up) ya--;
+			if (input.down) ya++;
+			if (input.left) xa--;
+			if (input.right) xa++;
+		}
+		
 		
 		if (anim < 5000) anim++; else anim = 0; 
 		
@@ -42,9 +64,28 @@ public class Player extends Mob {
 			shoot();
 		}
 		
-		if (xa != 0 || ya != 0) {
-			move(xa, ya);
-			walking = true;
+		if ((xa != 0 || ya != 0)) {
+			if (!col.update(xa+x, ya+y)) {
+				move(xa, ya);
+				walking = true;
+			}
+			
+			/*
+			else {
+				if (!col.update(xa+x, ya)) {
+					move(xa, 0);
+					walking = true;
+				}
+				else if (!col.update(xa, ya+y)) {
+					move(0, ya);
+					walking = true;
+				}
+			}*/
+			//else if (!col.update(xa, ya+y)) {
+			//	move(0, ya);
+			//	walking = true;
+			//}
+			//move(xa, ya);
 		}
 		else {
 			walking = false;
