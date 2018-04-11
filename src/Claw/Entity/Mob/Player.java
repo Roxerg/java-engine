@@ -69,18 +69,16 @@ public class Player extends Mob {
 				move(xa, ya);
 				walking = true;
 			}
-			
-			/*
 			else {
-				if (!col.update(xa+x, ya)) {
+				if (!col.update(xa+x, y)) {
 					move(xa, 0);
 					walking = true;
 				}
-				else if (!col.update(xa, ya+y)) {
+				else if (!col.update(x, ya+y)) {
 					move(0, ya);
 					walking = true;
 				}
-			}*/
+			}
 			//else if (!col.update(xa, ya+y)) {
 			//	move(0, ya);
 			//	walking = true;

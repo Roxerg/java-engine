@@ -24,7 +24,7 @@ public class CollisionDetection {
 		this.width = width;
 		this.height = height;
 		
-		/*
+		
 		for(int y = 0; y < height; y++) {
 			for(int x = 0; x < width; x++) {
 				if (tiles[x+y*width] == 0xff666666) {
@@ -32,8 +32,8 @@ public class CollisionDetection {
 				}
 			}
 		}
-		*/
-		collisions.add(new Collider(0, 0));
+		
+		//collisions.add(new Collider(0, 0));
 		
 		//for (Collider c : collisions) {
 		//	System.out.println("collision! cx: " + c.getX() + " cy: " + c.getY());
