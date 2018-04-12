@@ -5,6 +5,7 @@ import java.util.Random;
 
 import Claw.MouseInputHandler;
 import Claw.MouseMovementHandler;
+import Claw.Collision.CollisionDetection;
 import Claw.Entity.Entity;
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
@@ -25,13 +26,16 @@ public class Gun extends Entity {
 	
 	private MouseInputHandler mih;
 	private MouseMovementHandler mmh;
+	private CollisionDetection col;
 	private int refresh = 0;
 	
-	public Gun(Player player, MouseInputHandler mih, MouseMovementHandler mmh) {
+	
+	public Gun(Player player, MouseInputHandler mih, MouseMovementHandler mmh, CollisionDetection col) {
 		this.player = player;
 		this.sprite = Sprite.uzi;
 		this.mih = mih;
 		this.mmh = mmh;
+		this.col = col;
 		this.bulletlist = new ArrayList<Bullet>();
 		
 	}
@@ -56,7 +60,7 @@ public class Gun extends Entity {
 			ys = mmh.y;
 		}
 		
-		bulletlist.add(new Bullet(a, y-1, xs, ys));
+		bulletlist.add(new Bullet(a, y-1, xs, ys, col));
 		//System.out.println("shoot!");
 		//System.out.println(mih.y);
 		//System.out.println(mih.x);
@@ -81,6 +85,7 @@ public class Gun extends Entity {
 		
 		for (Bullet b : bulletlist) {
 			b.update();
+			if (b.hit) b = null;
 		}
 		
 		
@@ -118,7 +123,8 @@ public class Gun extends Entity {
 		
 		
 		for (Bullet b : bulletlist) {
-			b.render(screen);
+			if (!b.hit) b.render(screen);
+		
 		}
 		
 	}

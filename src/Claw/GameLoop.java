@@ -101,7 +101,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		collision = new CollisionDetection(level.tilecolor, levelWidth, levelHeight);
 		player = new Player(initialx, initialy, input, mouseinput, collision);
-		gun = new Gun(player, mouseinput, mousemove);
+		gun = new Gun(player, mouseinput, mousemove, collision);
 		
 		//System.out.println(mouseinput.clicked);
 		

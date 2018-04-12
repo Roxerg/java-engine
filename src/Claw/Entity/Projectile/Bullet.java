@@ -9,11 +9,13 @@ import Claw.Graphics.Sprite;
 import Claw.Level.Level;
 import Claw.MouseInputHandler;
 import Claw.MouseMovementHandler;
+import Claw.Collision.CollisionDetection;
 
 public class Bullet extends Entity {
 	
 	public int x, y;
 	public int deltax, deltay;
+	public boolean hit;
 	
 	private int xclick, yclick;
 	private boolean removed = false;
@@ -22,17 +24,20 @@ public class Bullet extends Entity {
 	private Sprite sprite;
 	
 	private int refresh = 0;
+	private CollisionDetection col;
 	
 	
 	
 	
-	public Bullet(int x, int y, int xs, int ys) {
+	public Bullet(int x, int y, int xs, int ys, CollisionDetection col) {
 		
 		this.sprite = Sprite.bullet;
 		this.x = x;
 		this.y = y;
 		this.xclick = xs;
 		this.yclick = ys;
+		this.col = col;
+		this.hit = false;
 		
 		
 		if (this.xclick > 450) {
@@ -76,8 +81,13 @@ public class Bullet extends Entity {
 		refresh++;
 		
 		if (refresh%2 == 0) {
+			if (!col.update(x, y)) {
 			x += deltax;
 			y += deltay;
+			}
+			else {
+				this.hit = true;
+			}
 		}
 		
 	}
