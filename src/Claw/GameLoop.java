@@ -150,7 +150,7 @@ public class GameLoop extends Canvas implements Runnable {
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				frame.setTitle(title + " | " + ticks + " ups, " + frames + " fps");
+				frame.setTitle(title + " | " + ticks + " ups, " + frames + " fps" + " mouse x:" + mousemove.x + " mouse y:" + mousemove.y);
 				ticks = 0;
 				frames = 0;
 			}

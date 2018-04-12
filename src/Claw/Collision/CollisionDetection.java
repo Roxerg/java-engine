@@ -46,7 +46,7 @@ public class CollisionDetection {
 	
 	public boolean update(int x, int y) {
 	
-		System.out.println(x + " " +y );
+		//System.out.println(x + " " +y );
 		double radius = (double)Math.sqrt(Math.pow(Sprite.grass1.SIZE/2, 2) + Math.pow(Sprite.grass1.SIZE/2, 2))*2;
 		
 		for (Collider c : collisions) {
@@ -57,16 +57,35 @@ public class CollisionDetection {
 				System.out.println("collision! cx: " + c.getX() + "px: " + player.x + " cy: " + c.getY() + " py: " + player.y);
 			}*/
 			double dist = (double)Math.sqrt(Math.pow(Math.abs(c.getX()+8 - x), 2) + Math.pow(Math.abs(c.getY()+8 - y), 2));
-			System.out.println("dist" + " " + dist);
+			//System.out.println("dist" + " " + dist);
 			if (dist <= radius) {
-				System.out.println(" partial collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
+				//System.out.println(" partial collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
 				if ((c.getX()+16 > x+8 || c.getX()+16 > x-8) && (c.getX() < x+8 || c.getX() < x-8)
 				 && (c.getY() < y+8 || c.getY() < y-8) && (c.getY()+16 > y+8 || c.getY()+16 > y-8)) {
-					System.out.println("collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
+					//System.out.println("collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
 					return true;
 				}
 				//System.out.println("collision!" + dist + " " + radius + " " + Sprite.grass1.SIZE);
 				//return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	public boolean simpleupdate(int x, int y) {
+		
+		double radius = (double)Math.sqrt(Math.pow(Sprite.grass1.SIZE/2, 2) + Math.pow(Sprite.grass1.SIZE/2, 2))*1.0;
+		
+		for (Collider c : collisions) {
+		
+			double dist = (double)Math.sqrt(Math.pow(Math.abs(c.getX() - x), 2) + Math.pow(Math.abs(c.getY() - y), 2));
+			
+			if (dist <= radius) {
+				//System.out.println(" partial collision! cx: " + c.getX() + "px: " + x + " cy: " + c.getY() + " py: " + y);
+				//	return true;
+				System.out.println("dist" + " " + dist + " radius " + radius);
+				return true;
 			}
 		}
 		return false;
