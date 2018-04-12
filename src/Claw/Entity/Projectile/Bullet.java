@@ -24,6 +24,7 @@ public class Bullet extends Entity {
 	private Sprite sprite;
 	
 	private int refresh = 0;
+	private int life = 100;
 	private CollisionDetection col;
 	
 	
@@ -79,8 +80,11 @@ public class Bullet extends Entity {
 	public void update() {
 		
 		refresh++;
+		life--;
 		
-		if (refresh%2 == 0) {
+		if (life<0) this.hit = true;
+		
+		if (refresh%2 == 0 && !hit) {
 			if (!col.update(x, y)) {
 			x += deltax;
 			y += deltay;
