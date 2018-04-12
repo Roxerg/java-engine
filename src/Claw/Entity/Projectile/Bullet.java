@@ -85,7 +85,7 @@ public class Bullet extends Entity {
 		if (life<0) this.hit = true;
 		
 		if (refresh%2 == 0 && !hit) {
-			if (!col.update(x, y)) {
+			if (!col.update(x+deltax, y+deltay)) {
 			x += deltax;
 			y += deltay;
 			}
