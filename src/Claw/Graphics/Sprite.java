@@ -3,6 +3,7 @@ package Claw.Graphics;
 public class Sprite {
 	
 	public final int SIZE;
+	public int WIDTH;
 	private int x, y;
 	public int[] pixels;
 	private SpriteSheet spritesheet;
@@ -36,6 +37,11 @@ public class Sprite {
 	public static Sprite sand1  =  new Sprite(16, 3, 0, SpriteSheet.first);
 	public static Sprite stone1 =  new Sprite(16, 4, 0, SpriteSheet.first);
 	
+	public static Sprite ezhik_walk_one = new Sprite(32, 48, 0, 6, SpriteSheet.first); 
+	public static Sprite ezhik_walk_two = new Sprite(32, 48, 1, 6, SpriteSheet.first);
+	
+	public static Sprite ezhik_hurt = new Sprite(32, 48, 0, 7, SpriteSheet.first);
+	public static Sprite ezhik_idle = new Sprite(32, 48, 1, 7, SpriteSheet.first);
 	
 	public static Sprite nothing = new Sprite(16, 0x1976D2);
 	
@@ -50,6 +56,17 @@ public class Sprite {
 		this.spritesheet = spritesheet;
 		load();
 		
+	}
+	
+	public Sprite(int height, int width, int x, int y, SpriteSheet spritesheet) {
+		
+		SIZE = height;
+		this.WIDTH = width;
+		pixels = new int[SIZE*WIDTH];
+		this.x = x * width;
+		this.y = y * height;
+		this.spritesheet = spritesheet;
+		loadasym();
 		
 	}
 	
@@ -71,6 +88,14 @@ public class Sprite {
 		for (int y = 0; y < SIZE; y++) {
 			for (int x = 0; x < SIZE; x++) {
 				pixels[x+y*SIZE] = spritesheet.pixels[(x + this.x) + (y + this.y)*spritesheet.SIZE];
+			}
+		}
+	}
+	
+	private void loadasym() {
+		for (int y = 0; y < SIZE; y++) {
+			for (int x = 0; x < WIDTH; x++) {
+				pixels[x+y*WIDTH] = spritesheet.pixels[(x + this.x) + (y + this.y)*spritesheet.SIZE];
 			}
 		}
 	}

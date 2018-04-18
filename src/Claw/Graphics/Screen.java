@@ -128,6 +128,27 @@ public class Screen {
 		
 	}
 	
+	public void renderPlayerAsym(int xp, int yp, Sprite sprite) {
+		
+		xp -= xOffset;
+		yp -= yOffset;
+		
+		for (int y = 0; y < sprite.SIZE; y++) {
+			int ya = y + yp;
+			for (int x = 0; x < sprite.WIDTH; x++) {
+				int xa = x + xp;
+				if (xa < -sprite.WIDTH || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int colour = sprite.pixels[x + y * sprite.WIDTH];
+				if (colour != 0xffFF00FF) px[xa+ya*width] = colour ;
+				
+				// for sprite flip, iterate through pixels in reverse order.
+				
+			}
+		}
+		
+	}
+	
 	public void renderSprite(int xp, int yp, Sprite sprite) {
 		renderPlayer(xp, yp, sprite);
 	}
