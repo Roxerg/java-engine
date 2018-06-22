@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -21,7 +22,9 @@ import Claw.Level.SpawnLevel;
 import Claw.InputHandler;
 import Claw.MouseInputHandler;
 import Claw.Collision.CollisionDetection;
+import Claw.Entity.Mob.Enemy;
 import Claw.Entity.Mob.Gun;
+import Claw.Entity.Mob.Mob;
 import Claw.Entity.Mob.Player;
 
 public class GameLoop extends Canvas implements Runnable {
@@ -61,12 +64,17 @@ public class GameLoop extends Canvas implements Runnable {
 	private Player player;
 	private Gun gun; 
 	
+	
+	private ArrayList<Mob> mobs;
+	private Enemy enemy;
+	
+	
 	private CollisionDetection collision;
 	
 	
 	public GameLoop() {
 		
-		
+		mobs = new ArrayList<Mob>();
 		
 		Dimension frameSize = new Dimension(windowWidth * scale, windowHeight * scale); 
 		setPreferredSize(frameSize);
@@ -82,10 +90,9 @@ public class GameLoop extends Canvas implements Runnable {
 		mousemove = new MouseMovementHandler();
 	
 		
-		//level = new SpawnLevel("/sprites/level.png");
+		//level = new SpawnLevel("/sprites/level.png")
 		
-		
-		
+		mobs.add(enemy);
 		
 		
 		
@@ -99,9 +106,11 @@ public class GameLoop extends Canvas implements Runnable {
 		level = new LevelEditor(mouseinput, mousemove, levelWidth, levelHeight, editorEnabled);
 		
 		
-		collision = new CollisionDetection(level.tilecolor, levelWidth, levelHeight);
+		collision = new CollisionDetection(level.tilecolor, mobs, levelWidth, levelHeight);
 		player = new Player(initialx, initialy, input, mouseinput, collision);
 		gun = new Gun(player, mouseinput, mousemove, collision);
+		
+		enemy = new Enemy(1, player);
 		
 		//System.out.println(mouseinput.clicked);
 		
@@ -163,6 +172,7 @@ public class GameLoop extends Canvas implements Runnable {
 		input.update();
 		player.update();
 		gun.update();
+		enemy.update();
 		
 		if (input.saveMap) {
 			input.saveMap = false;
@@ -210,6 +220,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		player.render(render);
 		gun.render(render);
+		enemy.render(render);
 		
 		//for map editor
 		if (editorEnabled) {

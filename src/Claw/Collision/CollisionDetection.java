@@ -2,9 +2,11 @@ package Claw.Collision;
 
 import java.util.ArrayList;
 
+
 import Claw.Entity.Mob.Player;
 import Claw.Graphics.Sprite;
 import Claw.Level.Tile.Tile;
+import Claw.Entity.Mob.*;
 
 public class CollisionDetection {
 	
@@ -13,16 +15,18 @@ public class CollisionDetection {
 	//public Player player;
 	private ArrayList<Collider> collisions;
 	private int width, height;
+	private ArrayList<Mob> mobs;
 	
 	
 	
 	// do a separate check to see if the tile that was just placed is a solid one, if so, add it to list.
-	public CollisionDetection(int[] tiles, int width, int height) {
+	public CollisionDetection(int[] tiles, ArrayList<Mob> mobs, int width, int height) {
 		
 		//this.player = p;
 		collisions = new ArrayList<Collider>(10000);
 		this.width = width;
 		this.height = height;
+		this.mobs = mobs;
 		
 		
 		for(int y = 0; y < height; y++) {
@@ -90,6 +94,15 @@ public class CollisionDetection {
 		}
 		return false;
 		
+	}
+	
+	
+	public boolean mobcollision() {
+		for (Mob mob : mobs) {
+			int mobx = mob.x;
+			int moby = mob.y;
+		}
+		return false;
 	}
 
 }

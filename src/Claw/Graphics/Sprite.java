@@ -21,6 +21,10 @@ public class Sprite {
 	public static Sprite skelly =  new Sprite(16, 0, 1, SpriteSheet.first);
 	public static Sprite skully =  new Sprite(16, 0, 2, SpriteSheet.first);
 	
+	public static Sprite blood1 = new Sprite(16, 0, 6, SpriteSheet.first);
+	public static Sprite blood2 = new Sprite(16, 0, 7, SpriteSheet.first);
+	public static Sprite blood3 = new Sprite(16, 0, 8, SpriteSheet.first);
+	
 	//public static Sprite kitty  =  new Sprite(16, 1, 0, SpriteSheet.first);
 	public static Sprite uzi    =  new Sprite(16, 0, 3, SpriteSheet.first);
 	public static Sprite uzi2   =  new Sprite(16, 0, 4, SpriteSheet.first);
