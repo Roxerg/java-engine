@@ -15,18 +15,18 @@ public class CollisionDetection {
 	//public Player player;
 	private ArrayList<Collider> collisions;
 	private int width, height;
-	private ArrayList<Mob> mobs;
+	private ArrayList<Enemy> enemies;
 	
 	
 	
 	// do a separate check to see if the tile that was just placed is a solid one, if so, add it to list.
-	public CollisionDetection(int[] tiles, ArrayList<Mob> mobs, int width, int height) {
+	public CollisionDetection(int[] tiles, ArrayList<Enemy> enemies, int width, int height) {
 		
 		//this.player = p;
 		collisions = new ArrayList<Collider>(10000);
 		this.width = width;
 		this.height = height;
-		this.mobs = mobs;
+		this.enemies = enemies;
 		
 		
 		for(int y = 0; y < height; y++) {
@@ -97,10 +97,17 @@ public class CollisionDetection {
 	}
 	
 	
-	public boolean mobcollision() {
-		for (Mob mob : mobs) {
+	public boolean enemycollision(int x, int y) {
+		for (Enemy mob : enemies) {
 			int mobx = mob.x;
 			int moby = mob.y;
+			
+			mob.bleed();
+			
+			if (x < mobx+36 && x > mobx-16 &&  y > moby && y < moby+18) {
+				return true;
+				
+			}
 		}
 		return false;
 	}

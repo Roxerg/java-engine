@@ -80,15 +80,16 @@ public class Bullet extends Entity {
 	
 	public void update() {
 		
-		
-		
-		
 		refresh++;
 		life--;
 		
 		if (life<0) this.hit = true;
 		
 		if (refresh%2 == 0 && !hit) {
+			
+			if (col.enemycollision(x+deltax, y+deltay)) {
+				this.hit = true;
+			}
 			
 			
 			if (!col.simpleupdate(x+deltax, y+deltay)  ) {  //&& !col.update(x-deltax, y-deltay)

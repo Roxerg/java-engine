@@ -51,6 +51,11 @@ public class Enemy extends Mob {
 	}
 	
 	
+	public void bleed() {
+		
+	}
+	
+	
 	
 	public void update() {
 		burp++;

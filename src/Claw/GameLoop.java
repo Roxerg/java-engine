@@ -65,7 +65,7 @@ public class GameLoop extends Canvas implements Runnable {
 	private Gun gun; 
 	
 	
-	private ArrayList<Mob> mobs;
+	private ArrayList<Enemy> enemies;
 	private Enemy enemy;
 	
 	
@@ -74,7 +74,7 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	public GameLoop() {
 		
-		mobs = new ArrayList<Mob>();
+		enemies = new ArrayList<Enemy>();
 		
 		Dimension frameSize = new Dimension(windowWidth * scale, windowHeight * scale); 
 		setPreferredSize(frameSize);
@@ -92,7 +92,7 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		//level = new SpawnLevel("/sprites/level.png")
 		
-		mobs.add(enemy);
+		//mobs.add(enemy);
 		
 		
 		
@@ -106,11 +106,12 @@ public class GameLoop extends Canvas implements Runnable {
 		level = new LevelEditor(mouseinput, mousemove, levelWidth, levelHeight, editorEnabled);
 		
 		
-		collision = new CollisionDetection(level.tilecolor, mobs, levelWidth, levelHeight);
+		collision = new CollisionDetection(level.tilecolor, enemies, levelWidth, levelHeight);
 		player = new Player(initialx, initialy, input, mouseinput, collision);
 		gun = new Gun(player, mouseinput, mousemove, collision);
 		
 		enemy = new Enemy(1, player);
+		enemies.add(enemy);
 		
 		//System.out.println(mouseinput.clicked);
 		
