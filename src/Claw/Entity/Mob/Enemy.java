@@ -1,7 +1,10 @@
 package Claw.Entity.Mob;
 
+import java.util.Random;
+
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
+
 
 public class Enemy extends Mob {
 	
@@ -14,14 +17,22 @@ public class Enemy extends Mob {
 	
 	public Enemy(int type, Player player) {
 		
+		Random rng = new Random();
+		
+		int xoff = rng.nextInt(1000);
+		int yoff = rng.nextInt(1000);
+		
+		System.out.println("enemy stuff:");
+		System.out.println(xoff + yoff);
+		
 		this.player = player;
 		this.xa = 0;
 		this.ya = 0;
 		if (type == 1) {
 			this.sprite = Sprite.ezhik_idle;
 			this.health = 100;
-			this.x = 0;
-			this.y = 0;
+			this.x = 0 + xoff;
+			this.y = 0 + yoff;
 			
 		}
 

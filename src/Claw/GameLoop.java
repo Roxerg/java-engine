@@ -66,7 +66,7 @@ public class GameLoop extends Canvas implements Runnable {
 	
 	
 	private ArrayList<Enemy> enemies;
-	private Enemy enemy;
+	private Enemy enemy, enemy2, enemy3;
 	
 	
 	private CollisionDetection collision;
@@ -109,6 +109,25 @@ public class GameLoop extends Canvas implements Runnable {
 		collision = new CollisionDetection(level.tilecolor, enemies, levelWidth, levelHeight);
 		player = new Player(initialx, initialy, input, mouseinput, collision);
 		gun = new Gun(player, mouseinput, mousemove, collision);
+		
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
+		
+		enemy = new Enemy(1, player);
+		enemies.add(enemy);
 		
 		enemy = new Enemy(1, player);
 		enemies.add(enemy);
@@ -173,7 +192,14 @@ public class GameLoop extends Canvas implements Runnable {
 		input.update();
 		player.update();
 		gun.update();
-		enemy.update();
+		
+
+		
+		for (Enemy enemy : enemies) {
+			enemy.update();
+		}
+		
+		
 		
 		if (input.saveMap) {
 			input.saveMap = false;
@@ -221,7 +247,10 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		player.render(render);
 		gun.render(render);
-		enemy.render(render);
+		
+		for (Enemy enemy : enemies) {
+			enemy.render(render);
+		}
 		
 		//for map editor
 		if (editorEnabled) {
