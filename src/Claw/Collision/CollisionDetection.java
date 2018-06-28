@@ -99,13 +99,15 @@ public class CollisionDetection {
 	
 	public boolean enemycollision(int x, int y) {
 		for (Enemy mob : enemies) {
-			int mobx = mob.x;
-			int moby = mob.y;
+			if (mob.isAlive()) {
+				int mobx = mob.x;
+				int moby = mob.y;
 			
-			if (x < mobx+36 && x > mobx-16 &&  y > moby && y < moby+18) {
-				mob.bleed();
-				return true;
+				if (x < mobx+36 && x > mobx-16 &&  y > moby && y < moby+18) {
+					mob.bleed();
+					return true;
 				
+			}
 			}
 		}
 		return false;

@@ -248,8 +248,15 @@ public class GameLoop extends Canvas implements Runnable {
 		player.render(render);
 		gun.render(render);
 		
-		for (Enemy enemy : enemies) {
-			enemy.render(render);
+		for (Enemy enemy : new ArrayList<>(enemies)) {
+			
+			if (enemy.toDelete()) {
+				enemies.remove(enemy);
+			}
+			else {
+				enemy.render(render);
+			}
+			
 			//for (Blood blood : enemy.bloods) {
 			//	blood.render(render);
 			//}

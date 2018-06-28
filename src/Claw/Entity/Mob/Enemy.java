@@ -16,6 +16,7 @@ public class Enemy extends Mob {
 	
 	public ArrayList<Blood> bloods;
 	
+	private boolean alive = true, delete = false;
 	
 	
 	public Enemy(int type, Player player) {
@@ -29,6 +30,11 @@ public class Enemy extends Mob {
 		
 		System.out.println("enemy stuff:");
 		System.out.println(xoff + yoff);
+		
+		if (type == 1) {
+			this.health = 100;
+		}
+		
 		
 		this.player = player;
 		this.xa = 0;
@@ -69,6 +75,17 @@ public class Enemy extends Mob {
 	
 	public void bleed() {
 		
+		this.health = this.health - 5;
+		
+		
+		if (health <= 20) {
+			splat();
+		}
+		
+		if (health <= 0) {
+			this.alive = false;
+		}
+		
 		
 		for (int i=0; i<5; i++) {
 			bloods.add(new Blood(x, y, true));
@@ -80,6 +97,18 @@ public class Enemy extends Mob {
 		
 		
 	}
+	
+	private void splat() {
+		for (int i=0; i<20; i++) {
+			bloods.add(new Blood(x, y, true, 300));
+		}
+		for (int i=0; i<20; i++) {
+			bloods.add(new Blood(x, y, false, 300));
+		}
+		
+	}
+	
+	
 	
 	
 	
@@ -114,10 +143,24 @@ public class Enemy extends Mob {
 	}
 	
 	public void render(Screen screen) {
-		screen.renderMob(x+xa, y+ya, sprite);
+		if (isAlive()) {
+			screen.renderMob(x+xa, y+ya, sprite);
+		}
+		else if (bloods.isEmpty()) {
+			this.delete = true;
+		}
 		for (Blood blood : bloods) {
 			blood.render(screen);
 		}
+	}
+	
+	
+	public boolean isAlive() {
+		return this.alive;
+	}
+	
+	public boolean toDelete() {
+		return this.delete;
 	}
 	
 	
