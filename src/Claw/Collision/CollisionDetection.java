@@ -102,9 +102,8 @@ public class CollisionDetection {
 			int mobx = mob.x;
 			int moby = mob.y;
 			
-			mob.bleed();
-			
 			if (x < mobx+36 && x > mobx-16 &&  y > moby && y < moby+18) {
+				mob.bleed();
 				return true;
 				
 			}

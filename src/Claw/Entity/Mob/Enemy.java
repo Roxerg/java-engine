@@ -1,10 +1,11 @@
 package Claw.Entity.Mob;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import Claw.Graphics.Screen;
 import Claw.Graphics.Sprite;
-
+import Claw.Entity.Particle.Blood;
 
 public class Enemy extends Mob {
 	
@@ -13,11 +14,15 @@ public class Enemy extends Mob {
 	protected int xa, ya;
 	private boolean step = false;
 	
+	public ArrayList<Blood> bloods;
+	
 	
 	
 	public Enemy(int type, Player player) {
 		
 		Random rng = new Random();
+		
+		this.bloods = new ArrayList<Blood>();
 		
 		int xoff = rng.nextInt(1000);
 		int yoff = rng.nextInt(1000);
@@ -64,6 +69,16 @@ public class Enemy extends Mob {
 	
 	public void bleed() {
 		
+		
+		for (int i=0; i<5; i++) {
+			bloods.add(new Blood(x, y, true));
+		}
+		for (int i=0; i<5; i++) {
+			bloods.add(new Blood(x, y, false));
+		}
+		
+		
+		
 	}
 	
 	
@@ -71,6 +86,15 @@ public class Enemy extends Mob {
 	public void update() {
 		burp++;
 		SeekAndDestroy();
+		
+		for (Blood blood : new ArrayList<>(bloods)) {
+			blood.update();
+			if (blood.isComplete()) {
+				bloods.remove(blood);
+			}
+		}
+		
+		
 		if (burp % 2 == 0) {
 			move(xa, ya);
 			if ((xa > 0 || ya > 0) && !step) {
@@ -91,6 +115,9 @@ public class Enemy extends Mob {
 	
 	public void render(Screen screen) {
 		screen.renderMob(x+xa, y+ya, sprite);
+		for (Blood blood : bloods) {
+			blood.render(screen);
+		}
 	}
 	
 	

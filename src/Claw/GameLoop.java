@@ -250,6 +250,9 @@ public class GameLoop extends Canvas implements Runnable {
 		
 		for (Enemy enemy : enemies) {
 			enemy.render(render);
+			//for (Blood blood : enemy.bloods) {
+			//	blood.render(render);
+			//}
 		}
 		
 		//for map editor
