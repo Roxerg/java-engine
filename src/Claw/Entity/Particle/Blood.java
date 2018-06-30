@@ -19,7 +19,7 @@ public class Blood extends Entity {
 	
 	
 	public Blood(int x, int y, boolean right) {
-		this.x = x;
+		this.x = x+16;
 		this.y = y;
 		this.right = right;
 		ArrayList<Sprite> list = new ArrayList<Sprite>();
@@ -30,14 +30,13 @@ public class Blood extends Entity {
 		this.sprite = list.get(rng.nextInt(list.size()));
 		int a = 6+rng.nextInt(10);
 		int b = 2+rng.nextInt(20);
-		
+		//b *= -1;
 		if (!right) {
 			a *= -1;
-			b *= -1;
 		}
 		
-		this.maxx = x+a;
-		this.maxy = y+b;
+		this.maxx = this.x+a;
+		this.maxy = this.y+b;
 		
 		this.duration = 0;
 		this.counter = 1;
@@ -47,7 +46,7 @@ public class Blood extends Entity {
 	
 	// for SPLAT
 	public Blood(int x, int y, boolean right, int duration) {
-		this.x = x;
+		this.x = x;	
 		this.y = y;
 		this.right = right;
 		ArrayList<Sprite> list = new ArrayList<Sprite>();
@@ -56,12 +55,11 @@ public class Blood extends Entity {
 		list.add(Sprite.blood3);
 		Random rng = new Random();
 		this.sprite = list.get(rng.nextInt(list.size()));
-		int a = 6+rng.nextInt(30);
-		int b = 4+rng.nextInt(20);
+		int a = rng.nextInt(36);
+		int b = rng.nextInt(36);
 		
 		if (!right) {
 			a *= -1;
-			b *= -1;
 		}
 		
 		this.maxx = x+a;

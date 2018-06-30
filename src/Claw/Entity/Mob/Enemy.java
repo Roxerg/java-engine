@@ -123,18 +123,28 @@ public class Enemy extends Mob {
 			}
 		}
 		
-		
 		if (burp % 2 == 0) {
 			move(xa, ya);
-			if ((xa > 0 || ya > 0) && !step) {
+		}
+		
+		
+		
+		if (burp % 6 == 0) {
+			this.sprite = Sprite.ezhik_walk_one;
+		}
+		else if (burp % 3 == 0){
+			this.sprite = Sprite.ezhik_walk_two;
+		}
+			
+			/*if ((xa > 0 || ya > 0) && !step) {
 				this.sprite = Sprite.ezhik_walk_two;
 				step = true;
 			}
 			else if ((xa > 0 || ya > 0) && step) {
 				this.sprite = Sprite.ezhik_walk_one;
 				step = false;
-			}
-		}
+			}*/
+		
 
 		if (burp > 5000) {
 			burp = 0;
@@ -143,15 +153,28 @@ public class Enemy extends Mob {
 	}
 	
 	public void render(Screen screen) {
+		
+		/*
+		if (!isAlive()) {
+			for (Blood blood : bloods) {
+				blood.render(screen);
+			}
+		}
+		*/
+		
 		if (isAlive()) {
 			screen.renderMob(x+xa, y+ya, sprite);
 		}
 		else if (bloods.isEmpty()) {
 			this.delete = true;
 		}
-		for (Blood blood : bloods) {
-			blood.render(screen);
+		/*
+		if (isAlive()) {
+			for (Blood blood : bloods) {
+				blood.render(screen);
+			}
 		}
+		*/
 	}
 	
 	

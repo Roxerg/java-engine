@@ -26,6 +26,7 @@ import Claw.Entity.Mob.Enemy;
 import Claw.Entity.Mob.Gun;
 import Claw.Entity.Mob.Mob;
 import Claw.Entity.Mob.Player;
+import Claw.Entity.Particle.Blood;
 
 public class GameLoop extends Canvas implements Runnable {
 	
@@ -243,7 +244,13 @@ public class GameLoop extends Canvas implements Runnable {
 		}
 				
 		
-		
+		for (Enemy enemy : enemies) {
+			if (!enemy.isAlive()) {
+				for (Blood blood : enemy.bloods) {
+					blood.render(render);
+				}
+			}
+		}
 		
 		player.render(render);
 		gun.render(render);
@@ -255,6 +262,13 @@ public class GameLoop extends Canvas implements Runnable {
 			}
 			else {
 				enemy.render(render);
+				
+				if (enemy.isAlive()) {
+					for (Blood blood : enemy.bloods) {
+						blood.render(render);
+					}
+				}
+	
 			}
 			
 			//for (Blood blood : enemy.bloods) {

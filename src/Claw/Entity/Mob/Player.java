@@ -13,7 +13,7 @@ public class Player extends Mob {
 	private Sprite sprite;
 	private int anim = 0;
 	private boolean walking = false;
-	
+	private int health;
 	private CollisionDetection col;
 	
 	//public static int initialx = 100, initialy = 100;
@@ -29,6 +29,7 @@ public class Player extends Mob {
 		this.y = y;
 		this.input = input;
 		this.col = col;
+		this.health = 5;
 		this.mouseinput = mouseinput;
 		sprite = Sprite.player_front;
 	}
