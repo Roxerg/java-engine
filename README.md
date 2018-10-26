@@ -13,3 +13,6 @@
 - improve enemy pathfinding
 - implement lose state
 - implement HUD
+- finish the actual game
+- tidy up code
+
