@@ -40,7 +40,7 @@ public class Enemy extends Mob {
 		this.xa = 0;
 		this.ya = 0;
 		if (type == 1) {
-			this.sprite = Sprite.ezhik_idle;
+			this.sprite = Sprite.ezhik_walk_two;
 			this.health = 100;
 			this.x = 0 + xoff;
 			this.y = 0 + yoff;
@@ -51,17 +51,18 @@ public class Enemy extends Mob {
 	
 	
 	private void SeekAndDestroy() {
-		if (Math.sqrt(Math.pow(super.x-player.x-16, 2) + Math.pow(super.y-player.y-16, 2)) > 1) {
-			if (super.x < player.x-16) {
+		float dist = (float)Math.sqrt(Math.pow(x-player.x-16, 2) + Math.pow(y-player.y-16, 2));
+		if (dist > 10) {
+			if (super.x+5 < player.x-15) {
 				xa=1;
 			}
-			if (super.x > player.x-16) {
+			if (super.x-5 > player.x-15) {
 				xa=-1;
 			}
-			if (super.y < player.y-16) {
+			if (super.y+5 < player.y-15) {
 				ya=1;
 			}
-			if (super.y > player.y-16) {
+			if (super.y-5 > player.y-15) {
 				ya=-1;
 			}
 			
@@ -123,18 +124,22 @@ public class Enemy extends Mob {
 			}
 		}
 		
-		if (burp % 2 == 0) {
-			move(xa, ya);
-		}
 		
-		
-		
-		if (burp % 6 == 0) {
-			this.sprite = Sprite.ezhik_walk_one;
+		if (xa != 0 || ya != 0) {
+			if (burp > 60) {
+				this.sprite = Sprite.ezhik_walk_one;
+				burp++;
+				if (burp == 120) {
+					burp = 0;
+				}
+			}
+			else if (burp < 60){
+				this.sprite = Sprite.ezhik_walk_two;
+				burp++;
+			}
 		}
-		else if (burp % 3 == 0){
-			this.sprite = Sprite.ezhik_walk_two;
-		}
+		move(xa, ya);
+		
 			
 			/*if ((xa > 0 || ya > 0) && !step) {
 				this.sprite = Sprite.ezhik_walk_two;

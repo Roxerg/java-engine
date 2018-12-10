@@ -51,10 +51,10 @@ public class Player extends Mob {
 		*/
 		
 		if (true) {
-			if (input.up) ya--;
-			if (input.down) ya++;
-			if (input.left) xa--;
-			if (input.right) xa++;
+			if (input.up) ya-=2;
+			if (input.down) ya+=2;
+			if (input.left) xa-=2;
+			if (input.right) xa+=2;
 		}
 		
 		
